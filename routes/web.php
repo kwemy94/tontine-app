@@ -1,11 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+# desabled login page
+Auth::routes(['login' =>false]);
 
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
