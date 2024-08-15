@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('name_tontine')->unique();
             $table->string('cycle');
             $table->date('start_date');
-            $table->id();
             $table->date('end_date');
-            $table->jjj('end_date');
-            $table->jjj('end_date');
             $table->json('order_of_passage');
             $table->float('amount_tontine');
             $table->timestamps();
