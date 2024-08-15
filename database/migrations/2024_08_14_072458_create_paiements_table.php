@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger('tontine_id');
-            $table->foreign('tontine_id')->references('id')->on('tontines')->cascadeOnDelete();
             $table->float('payment_amount');
             $table->date('period');
-            $table->string('reference');
+            $table->json('reference');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('tontine_id')->references('id')->on('tontines')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

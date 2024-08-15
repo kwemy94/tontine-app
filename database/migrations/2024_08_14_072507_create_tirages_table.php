@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('tirages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger('tontine_id');
-            $table->foreign('tontine_id')->references('id')->on('tontines')->cascadeOnDelete();
             $table->integer('draw_number')->unique();
-            $table->string('beneficiary_status');
+            $table->string('beneficiary_status')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tontine_id')->references('id')->on('tontines');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

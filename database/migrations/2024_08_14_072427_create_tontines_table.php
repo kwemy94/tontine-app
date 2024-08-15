@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->json('order_of_passage');
             $table->float('amount_tontine');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

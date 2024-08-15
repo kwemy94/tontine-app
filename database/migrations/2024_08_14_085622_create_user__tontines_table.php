@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user__tontines', function (Blueprint $table) {
+        Schema::create('tontine_user', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedByInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            // $table->unsignedByInteger('tontine_id');
-            // $table->foreign('tontine_id')->references('id')->on('tontines')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('tontine_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('tontine_id');
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('beneficiary_status')->default(0);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tontine_id')->references('id')->on('tontines');
             $table->timestamps();
         });
     }

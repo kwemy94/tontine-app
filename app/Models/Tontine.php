@@ -4,29 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Paiement;
-use App\Models\Tirage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tontine extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'name_tontine',
-        'cycle',
-        'start_date',
-        'end_date',
-        'order_of_passage',
-        'amount_tontine'
-    ];
+    use HasFactory, SoftDeletes;
+    protected $guarded = ['id'];
 
     public function paiements()
     {
-        return $this -> hasMany(Paiement::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function tirages()
     {
-        return $this -> hasMany(Tirage::class);
+        return $this->hasMany(Tirage::class);
     }
 
 }
