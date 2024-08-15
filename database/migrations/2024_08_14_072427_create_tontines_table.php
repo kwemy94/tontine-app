@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cycle');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('order_of_passage');
+            $table->json('order_of_passage');
             $table->float('amount_tontine');
             $table->timestamps();
         });
