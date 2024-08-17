@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tontine;
+use App\Repositories\Tontines\TontineRepository;
 use Illuminate\Http\Request;
 
 class TontineController extends Controller
 {
+    private $tontineRepository;
+    public function __construct(TontineRepository $tontineRepository){
+        $this->tontineRepository = $tontineRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $tontines = $this->tontineRepository->getAll();
+        // dd($tontines);
+        return view('dashboard.tontine.index', compact('tontines'));
     }
 
     /**
@@ -28,7 +36,23 @@ class TontineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        try {
+            $validatedData = $request->validate([
+                'name_tontine' => 'required',
+                'cycle' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'amount_tontine' => 'required'
+            ]);
+           $inputs = $request->all();
+            $this->tontineRepository->store($inputs);
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
+        }
+
+        return redirect()->back();
     }
 
     /**

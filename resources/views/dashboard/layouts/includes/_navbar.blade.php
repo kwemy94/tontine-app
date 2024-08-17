@@ -23,7 +23,7 @@
                                 <a class="github-button"
                                     href="https://github.com/themeselection/sneat-html-admin-template-free"
                                     data-icon="octicon-star" data-size="large" data-show-count="true"
-                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">{{ Auth::user()->email }}</a>
+                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"></a>
                             </li>
 
                             <!-- User -->
