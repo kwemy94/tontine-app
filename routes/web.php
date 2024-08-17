@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TontineController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +27,7 @@ Route::middleware('auth')->group(function () {
 
 Auth::routes(['verify' => true]);
 require __DIR__.'/auth.php';
+
+Route::resource('/tontine', TontineController::class);
+
+

@@ -73,8 +73,8 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">Without menu</div>
+                    <a href="{{ route('tontine.index') }}" class="menu-link">
+                        <div data-i18n="Tontines">Tontines</div>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -82,11 +82,11 @@
                         <div data-i18n="Without navbar">Without navbar</div>
                     </a>
                 </li>
-               
+
             </ul>
         </li>
 
-        
-        
+
+
     </ul>
 </aside>
