@@ -8,8 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Auth::routes();
+
 # desabled login page
-Auth::routes(['login' =>false]);
+// Auth::routes(['login' =>false]);
 
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
@@ -21,4 +23,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Auth::routes(['verify' => true]);
 require __DIR__.'/auth.php';

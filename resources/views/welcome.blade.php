@@ -2,6 +2,14 @@
 
 @section('auth-title', "Connexion")
 
+@section('auth-css')
+    <style>
+        .authentication-wrapper.authentication-basic{
+            align-items: baseline !important;
+        }
+    </style>
+@endsection
+
 @section('auth-content')
     {{-- <div class="card">
         <div class="card-body">
