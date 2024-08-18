@@ -25,8 +25,10 @@
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/fonts/boxicons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('template/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('template/assets/vendor/css/core.css') }}"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('template/assets/vendor/css/theme-default.css') }}"
+        class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('template/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
@@ -35,7 +37,12 @@
     <link rel="stylesheet" href="{{ asset('template/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
-
+    <style>
+        .notification{
+            margin: 2% 2%;
+        }
+    </style>
+    @yield('dashboard-css')
     <!-- Helpers -->
     <script src="{{ asset('template/assets/vendor/js/helpers.js') }}"></script>
 
@@ -58,7 +65,20 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible notification" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if (session('danger'))
+                        <div class="alert alert-danger alert-dismissible notification" role="alert">
+                            {{ session('danger') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     @yield('dashboard-content')
 
                     @include('dashboard.layouts.includes._footer')
@@ -75,7 +95,7 @@
     </div>
     <!-- / Layout wrapper -->
 
-    
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -84,6 +104,8 @@
     <script src="{{ asset('template/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
+    <script src="{{ asset('js/custom.js') }}"></script>
+    @yield('dashboard-js')
     <script src="{{ asset('template/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 

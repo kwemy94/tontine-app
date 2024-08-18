@@ -21,6 +21,10 @@ class Tontine extends Model
         return $this->hasMany(Tirage::class);
     }
 
+    public function cycle(){
+        return $this->belongsTo(Cycle::class);
+    }
+
 }
 
 
