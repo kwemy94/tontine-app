@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cycle;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TontineSeeder extends Seeder
 {
@@ -15,28 +17,28 @@ class TontineSeeder extends Seeder
         $tontines = array(
             array(
                 "name_tontine" => "Tontine scolaire",
-                "cycle" => "Mensuel",
+                "cycle_id" => Cycle::inRandomOrder()->first()->id,
                 "start_date" => '2024-01-01',
                 "end_date" => "2024-12-31",
                 "amount_tontine" => 15000,
             ),
             array(
                 "name_tontine" => "Tontine scolaire",
-                "cycle" => "Mensuel",
+                "cycle_id" => Cycle::inRandomOrder()->first()->id,
                 "start_date" => now(),
                 "end_date" => "2024-12-31",
                 "amount_tontine" => 15000,
             ),
             array(
                 "name_tontine" => "Tontine construction",
-                "cycle" => "Mensuel",
+                "cycle_id" => Cycle::inRandomOrder()->first()->id,
                 "start_date" => now(),
                 "end_date" => "2024-12-31",
                 "amount_tontine" => 50000,
             ),
             array(
                 "name_tontine" => "Tontine solidarité",
-                "cycle" => "Mensuel",
+                "cycle_id" => Cycle::inRandomOrder()->first()->id,
                 "start_date" => now(),
                 "end_date" => "2024-12-31",
                 "amount_tontine" => 25000,
@@ -46,10 +48,11 @@ class TontineSeeder extends Seeder
     
 
         foreach ($tontines as $tontine) {
-            $existTontine = \DB::table('tontines')->where('name_tontine', $tontine['name_tontine'])->first();
+            $existTontine = DB::table('tontines')->where('name_tontine', $tontine['name_tontine'])->first();
 
             if (!$existTontine) {
-                \DB::table('tontines')->insert($tontine);
+                
+                DB::table('tontines')->insert($tontine);
             }
 
         }

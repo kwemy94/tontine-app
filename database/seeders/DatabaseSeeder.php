@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(TontineSeeder::class);
+        $this->call(CycleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(TontineSeeder::class);
 
 
 

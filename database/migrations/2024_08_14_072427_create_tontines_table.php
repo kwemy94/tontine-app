@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('tontines', function (Blueprint $table) {
             $table->id();
             $table->string('name_tontine')->unique();
-            $table->string('cycle');
+            $table->unsignedBigInteger('cycle_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->json('order_of_passage')->nullable();
             $table->float('amount_tontine');
+            $table->foreign('cycle_id')->references('id')->on('cycles');
             $table->softDeletes();
             $table->timestamps();
         });
