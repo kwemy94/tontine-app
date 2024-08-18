@@ -54,7 +54,8 @@
                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
 
                                         <form class="dropdown-item" action="{{ route('tontine.destroy', $tontine->id) }}"
-                                            method="DELETE">
+                                            method="post">
+                                            @method('delete')
                                             @csrf
                                             <button class="bx bx-trash me-1"
                                                 style="color: red; border: none; background-color:white "></button>

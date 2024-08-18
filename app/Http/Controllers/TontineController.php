@@ -82,8 +82,16 @@ class TontineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tontine $tontine)
+    public function destroy($id)
     {
-        //
+        $tontine = $this->tontineRepository->getById($id);
+        // dd($tontine);
+
+        if ($tontine)
+            {
+                $tontine->delete();
+                return redirect()->back();
+            }
+        return redirect()->back();
     }
 }
