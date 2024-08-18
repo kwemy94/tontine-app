@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TontineController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,5 +30,5 @@ Auth::routes(['verify' => true]);
 require __DIR__.'/auth.php';
 
 Route::resource('/tontine', TontineController::class);
-
+Route::resource('/user', UserController::class);
 
