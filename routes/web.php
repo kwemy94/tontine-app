@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TontineController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\TirageController;
 use App\Http\Controllers\TontineUserController;
 
 Route::get('/', function () {
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/paiements', PaiementController::class);
     Route::get('/payments-current-user', [PaiementController::class, 'currentUserPayment'])->name('paiement.current-user');
     Route::get('/my-tontine-user', [TontineUserController::class, 'index'])->name('current-user.tontine');
+
+    Route::resource('/tirage', TirageController::class);
 });
 
 

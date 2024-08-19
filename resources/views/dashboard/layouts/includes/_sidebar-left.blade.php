@@ -82,6 +82,12 @@
                         <div data-i18n="user">Utilisateurs</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="{{ route('tirage.index') }}" class="menu-link">
+                        <div data-i18n="user">Tirages</div>
+                    </a>
+                </li>
+
 
             </ul>
         </li>

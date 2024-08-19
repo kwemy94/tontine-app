@@ -4,15 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Tirage;
 use Illuminate\Http\Request;
+use App\Repositories\Tirages\TirageRepository;
 
 class TirageController extends Controller
 {
+    private $tirageRepository;
+    public function __construct(TirageRepository $tirageRepository)
+    {
+        $this->tirageRepository = $tirageRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $tirages = $this->tirageRepository->getAll();
+        return view('dashboard.tirage.index', compact('tirages'));
     }
 
     /**
