@@ -25,6 +25,10 @@ class Tontine extends Model
         return $this->belongsTo(Cycle::class);
     }
 
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
+
 }
 
 

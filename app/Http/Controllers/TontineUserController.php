@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paiement;
+use App\Models\TontineUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\Payments\PaymentRepository;
+use App\Repositories\TontineUser\TontineUserRepository;
 
-class PaiementController extends Controller
+class TontineUserController extends Controller
 {
-    private $paymentRepository;
-    public function __construct(PaymentRepository $paymentRepository){
-        $this->paymentRepository = $paymentRepository;
+    private $tontineUserRepository;
+    public  function __construct(TontineUserRepository $tontineUserRepository){
+        $this->tontineUserRepository = $tontineUserRepository;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $payments = $this->paymentRepository->getAll();
-
-        return view('dashboard.payment.index', compact('payments'));
-    }
-
-
-    public function currentUserPayment(){
         $user = Auth::user();
-        $payments = $this->paymentRepository->paymentUser($user->id);
+        $myTontines = $this->tontineUserRepository->myTontines($user->id);
 
-        return view('dashboard.payment.user_payment', compact('payments'));
+        return view('dashboard.payment.my-tontine.index', compact('myTontines'));
     }
 
     /**
@@ -50,7 +43,7 @@ class PaiementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Paiement $paiement)
+    public function show(TontineUser $tontineUser)
     {
         //
     }
@@ -58,7 +51,7 @@ class PaiementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Paiement $paiement)
+    public function edit(TontineUser $tontineUser)
     {
         //
     }
@@ -66,7 +59,7 @@ class PaiementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Paiement $paiement)
+    public function update(Request $request, TontineUser $tontineUser)
     {
         //
     }
@@ -74,7 +67,7 @@ class PaiementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Paiement $paiement)
+    public function destroy(TontineUser $tontineUser)
     {
         //
     }

@@ -4,18 +4,21 @@
 
 @section('dashboard-css')
     <style>
-        .error{
+        .error {
             border-color: red !important;
         }
-        .table-tontine{
+
+        .table-tontine {
             margin: 0 2% 0 2%;
             display: inline-block;
         }
-        .button-list{
+
+        .button-list {
             float: right;
             margin: 2%;
         }
-        .title-list{
+
+        .title-list {
             float: left;
         }
     </style>
@@ -32,9 +35,9 @@
 
         <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-            data-bs-target="#basicModal">
-            Nouveau
-        </button>
+                data-bs-target="#basicModal">
+                Nouveau
+            </button>
         </div>
         <div class="col-lg-4 col-md-6">
 
@@ -75,9 +78,9 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" id="edit_{{ $tontine->id }}"
-                                        data-url="{{ route('tontine.edit', $tontine->id) }}"
-                                        onclick="editer({{ $tontine->id }})">
-                                        <i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            data-url="{{ route('tontine.edit', $tontine->id) }}"
+                                            onclick="editer({{ $tontine->id }})">
+                                            <i class="bx bx-edit-alt me-1"></i> Edit</a>
 
                                         <form class="dropdown-item" action="{{ route('tontine.destroy', $tontine->id) }}"
                                             method="post">
@@ -117,7 +120,7 @@
 
 @section('dashboard-js')
     <script>
-        $('#saveTontine').click((e)=>{
+        $('#saveTontine').click((e) => {
             e.preventDefault();
             console.log('yes');
             let startD = $('#start_date').val();
@@ -127,10 +130,14 @@
             }
 
             if (new Date(endD) <= new Date(startD)) {
-                $('#errorDate').css({'display': 'block'})
+                $('#errorDate').css({
+                    'display': 'block'
+                })
                 return 0;
             }
-            $('#errorDate').css({'display': 'none'});
+            $('#errorDate').css({
+                'display': 'none'
+            });
 
             $('#basicModal').submit();
         })
@@ -143,7 +150,7 @@
             $('#loader').css('display', 'block');
             $('#loader').html(
                 '<div class="text-center"><i style="z-index: 5000; color:green;font-size:30px;">Chargement....</i></div>'
-                );
+            );
             $.ajax({
                 url,
                 data,

@@ -85,6 +85,31 @@
 
             </ul>
         </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Opérations</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('paiement.current-user') }}" class="menu-link">
+                        <div data-i18n="Tontines">Mes cotisations</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('current-user.tontine') }}" class="menu-link">
+                        <div data-i18n="Tontines">Mes tontines</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('paiements.index') }}" class="menu-link">
+                        <div data-i18n="user">Liste des paiements</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
 
 
 
