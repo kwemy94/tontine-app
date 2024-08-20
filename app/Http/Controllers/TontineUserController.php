@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TontineUser;
+use App\Repositories\Tontines\TontineRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\TontineUser\TontineUserRepository;
@@ -10,8 +11,11 @@ use App\Repositories\TontineUser\TontineUserRepository;
 class TontineUserController extends Controller
 {
     private $tontineUserRepository;
-    public  function __construct(TontineUserRepository $tontineUserRepository){
+    private $tontineRepository;
+    public  function __construct(TontineUserRepository $tontineUserRepository,
+        TontineRepository $tontineRepository){
         $this->tontineUserRepository = $tontineUserRepository;
+        $this->tontineRepository = $tontineRepository;
     }
     /**
      * Display a listing of the resource.
@@ -20,8 +24,9 @@ class TontineUserController extends Controller
     {
         $user = Auth::user();
         $myTontines = $this->tontineUserRepository->myTontines($user->id);
+        $tontines = $this->tontineRepository->getAll();
 
-        return view('dashboard.payment.my-tontine.index', compact('myTontines'));
+        return view('dashboard.payment.my-tontine.index', compact('myTontines', 'tontines'));
     }
 
     /**

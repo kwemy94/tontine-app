@@ -8,7 +8,7 @@
             border-color: red !important;
         }
 
-        .table-tontine {
+        .table-tirage {
             margin: 0 2% 0 2%;
             display: inline-block;
         }

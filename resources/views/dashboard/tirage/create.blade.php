@@ -23,9 +23,9 @@
                         <label for="name_tontine" class="form-label">NOM DE LA TONTINE</label>
                         <select class="form-select required" id="name_tontine" name="name_tontine" aria-label="Default select example">
                             <option selected="" disabled>Choisir une tontine</option>
-                            @foreach ($inputs as $tontine)
+                            {{-- @foreach ($inputs as $tontine)
                                 <option value="{{ $tontine->id }}">{{ $tontine->name_tontine }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
                 </div>
