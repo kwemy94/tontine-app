@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tirage;
+use App\Models\Tontine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\Tirages\TirageRepository;
+use App\Repositories\Tontines\TontineRepository;
+use Illuminate\Support\Facades\Auth;
+use Nette\Utils\Random;
 
 class TirageController extends Controller
 {
     private $tirageRepository;
-    public function __construct(TirageRepository $tirageRepository)
+    private $tontineRepository;
+    public function __construct(TirageRepository $tirageRepository, TontineRepository $tontineRepository)
     {
         $this->tirageRepository = $tirageRepository;
+        $this->tontineRepository = $tontineRepository;
     }
 
     /**
@@ -20,7 +27,8 @@ class TirageController extends Controller
     public function index()
     {
         $tirages = $this->tirageRepository->getAll();
-        return view('dashboard.tirage.index', compact('tirages'));
+        $tontines = $this->tontineRepository->getAll();
+        return view('dashboard.tirage.index', compact('tirages', 'tontines'));
     }
 
     /**
@@ -28,7 +36,8 @@ class TirageController extends Controller
      */
     public function create()
     {
-        //
+        // $tontines = Tontine::all();
+        // return view('dashboard.tirage.create', compact('tontines'));
     }
 
     /**
@@ -70,4 +79,50 @@ class TirageController extends Controller
     {
         //
     }
+
+    public function lancerTirage($tontineId)
+    {
+        $user = Auth::user;
+        //Récupère le tontine sélectionnée
+        // $tontine = $request->select('tontine_id');
+
+        //Compter le nombre d'utilisateurs de la table tontine-user
+        $nombreUtilisateur = User::where('tontine_id',$tontineId )->count();
+
+        //requete qui recupère la tontine dans la table tontine qui a comme id, tontineId
+        $tontine = Tontine::where('id', $tontineId);
+
+        //
+        $orderP = json_decode($tontine->order_of_passage);
+        $existNumber = [];
+        if (!empty($orderP)) {
+            foreach ($orderP as $key => $value) {
+                array_push($existNumber, $value);
+            }
+        }
+
+        do{
+            $numero = rand(1, $nombreUtilisateur);
+        } while(in_array($numero, $existNumber));
+
+        array_push($orderP, ["t_".$user->id => $numero]);
+        \DB::table('tontines')->update($tontineId, ['order_of_passage' =>json_encode($orderP)]);
+
+        //Générer un numéro de tirage pour chaque utilisateur
+        $tirages = [];
+        for ($i = 1; $i <= $nombreUtilisateur; $i++)
+        {
+            $numeroTirage = mt_rand(1000, 9999);
+            $tirages[] = [
+                'user_id' => $i,
+                'draw_number' => $numeroTirage
+            ];
+        }
+
+        // $tirage->save();
+
+        //Retourner le numéro de ti rage pour affichage dans la popup
+         return response()->json(['numero_tirage' => $numeroTirage]);
+    }
+
 }

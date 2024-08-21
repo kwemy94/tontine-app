@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-tontine-user', [TontineUserController::class, 'index'])->name('current-user.tontine');
 
     Route::resource('/tirage', TirageController::class);
+    Route::post('/lancer-tirage', [TirageController::class, 'lancerTirage'])->name('lancer-tirage');
 });
 
 

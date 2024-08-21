@@ -35,7 +35,7 @@
 
         <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-                data-bs-target="#basicModal">
+                data-bs-target="#formTirage">
                 Nouveau
             </button>
         </div>
@@ -49,9 +49,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Utilisateur</th>
                         <th>Tontine</th>
-                        <th>Numéro de tirage</th>
+                        <th>Ordre de passage</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -61,10 +60,8 @@
 
                     @forelse ($tirages as $tirage)
                         <tr>
-                            <td>{{ $tirage->user_id }}</td>
-                            <td>{{ $tirage->tontine_id }}</td>
-                            <td>{{ $tirage->draw_number }}</td>
-
+                            <td>{{ $tirage->name_tontine }}</td>
+                            <td>{{ $tirage->order_of_passage }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -72,12 +69,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="edit_{{ $tontine->id }}"
-                                            data-url="{{ route('tontine.edit', $tontine->id) }}"
-                                            onclick="editer({{ $tontine->id }})">
+                                        <a class="dropdown-item" id="edit_{{ $tirage->id }}"
+                                            data-url="{{ route('tirage.edit', $tirage->id) }}"
+                                            onclick="editer({{ $tirage->id }})">
                                             <i class="bx bx-edit-alt me-1"></i> Edit</a>
 
-                                        <form class="dropdown-item" action="{{ route('tontine.destroy', $tontine->id) }}"
+                                        <form class="dropdown-item" action="{{ route('tirage.destroy', $tirage->id) }}"
                                             method="post">
                                             @method('delete')
                                             @csrf
@@ -90,7 +87,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" style="text-align: center">
+                            <td colspan="3" style="text-align: center">
                                 Aucune tontine créée
                             </td>
                         </tr>
