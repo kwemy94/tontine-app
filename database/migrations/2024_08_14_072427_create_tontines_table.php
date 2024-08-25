@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->json('order_of_passage')->nullable();
             $table->float('amount_tontine');
+            
             $table->bigInteger('max_name_per_member')->default(2);
             $table->tinyInteger('status')->default(0)->comment("0=> En cours d'inscription, 1=>cycle en cours");
             $table->foreign('cycle_id')->references('id')->on('cycles');

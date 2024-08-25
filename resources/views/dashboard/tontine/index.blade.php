@@ -128,6 +128,7 @@
             console.log('yes');
             let startD = $('#start_date').val();
             let endD = $('#end_date').val();
+            let currentD = new Date();
             if (!ControlRequiredFields($('#basicModal .required'))) {
                 return 0;
             }
@@ -141,6 +142,17 @@
             $('#errorDate').css({
                 'display': 'none'
             });
+
+            if(new Date(endD) <= currentD) {
+                $('#errorCurDate').css({
+                    'display': 'block'
+                })
+                console.log("ici")
+                return 0;
+            }
+            $('#errorCurDate').css({
+                'display': 'none'
+            })
 
             $('#basicModal').submit();
         })

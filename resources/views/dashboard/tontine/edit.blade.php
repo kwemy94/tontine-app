@@ -44,7 +44,12 @@
                 </div>
                 <div class="row " id="errorDatee" style="display: none">
                     <p style="color: red">
-                        La date de fin doit être supérieur à la date de début
+                        La date de fin doit être supérieure à la date de début
+                    </p>
+                </div>
+                <div class="row " id="errorCurrentDate" style="display: none">
+                    <p style="color: red">
+                        La date de fin doit être supérieure à la date courante.
                     </p>
                 </div>
 
@@ -56,6 +61,12 @@
                     <div class="col mb-0">
                         <label for="max_name" class="form-label">Nombre de nom max par membre </label>
                         <input type="number" step="1" min="1" value="{{ $tontine->max_name_per_member }}" id="max_name" name="max_name_per_member" class="form-control required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="member_of_beneficiary" class="form-label">NOMBRE DE BENEFICIAIRES </label>
+                        <input type="number" min="1" id="member_of_beneficiary" class="form-control required" name="member_of_beneficiary" />
                     </div>
                 </div>
             </div>
@@ -71,20 +82,34 @@
 
 <script>
     $('#saveTontineEdit').click((e) => {
-        e.preventDefault();
+        e.preventDefault();//empeche l'envoie du formuairepardefaut
         console.log('set');
         let startD = $('#start_datee').val();
         let endD = $('#end_datee').val();
-        if (!ControlRequiredFields($('#basicModal_edit .required'))) {
+        let currentD = new Date();
+        // let day = currentD.getDate();
+        if (!ControlRequiredFields($('#basicModal_edit .required'))) {//si tous les champs ne sont pas renseigné faire
             return 0;
         }
         if (new Date(endD) <= new Date(startD)) {
             $('#errorDatee').css({
                 'display': 'block'
             })
+            console.log('ici 111');
             return 0;
         }
-        $('#errorDate').css({
+        $('#errorDatee').css({
+            'display': 'none'
+        })
+
+        if(new Date(endD) <= currentD) {
+            $('#errorCurrentDate').css({
+                'display': 'block'
+            })
+            console.log("ici")
+            return 0;
+        }
+        $('#errorCurrentDate').css({
             'display': 'none'
         })
 

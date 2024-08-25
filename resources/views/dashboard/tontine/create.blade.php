@@ -38,7 +38,12 @@
                 </div>
                 <div class="row " id="errorDate" style="display: none">
                     <p style="color: red">
-                        La date de fin doit être supérieur à la date de début
+                        La date de fin doit être supérieure à la date de début
+                    </p>
+                </div>
+                <div class="row " id="errorCurDate" style="display: none">
+                    <p style="color: red">
+                        La date de fin doit être supérieure à la date courante.
                     </p>
                 </div>
 
@@ -50,6 +55,12 @@
                     <div class="col mb-0">
                         <label for="max_name" class="form-label">Nombre de nom max par membre </label>
                         <input type="number" step="1" min="1" value="2" id="max_name" name="max_name_per_member" class="form-control required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="member_of_beneficiary" class="form-label">NOMBRE DE BENEFICIAIRES </label>
+                        <input type="number" min="1" id="member_of_beneficiary" class="form-control required" name="member_of_beneficiary" />
                     </div>
                 </div>
             </div>
