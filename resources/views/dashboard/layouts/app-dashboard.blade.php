@@ -66,14 +66,14 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     @if (session('success'))
-                        <div class="alert alert-success alert-dismissible notification" role="alert">
+                        <div class="alert alert-success alert-dismissible notification" style="text-align: center" role="alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                 aria-label="Close"></button>
                         </div>
                     @endif
                     @if (session('danger'))
-                        <div class="alert alert-danger alert-dismissible notification" role="alert">
+                        <div class="alert alert-danger alert-dismissible notification" style="text-align: center" role="alert">
                             {{ session('danger') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                 aria-label="Close"></button>

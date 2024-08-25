@@ -20,7 +20,10 @@ class TontineUserRepository extends ResourceRepository{
         return $this->model->all();
     }
     public function myTontines($userId){
-        return $this->model->where('user_id', $userId)->with('tontine')->get();
+        return $this->model->where('user_id', $userId)->with('tontine')->orderBy('tontine_id','desc')->get();
+    }
+    public function isMember($tontineId, $userId){
+        return $this->model->where([['user_id', $userId], ['tontine_id', $tontineId]])->count();
     }
 
     

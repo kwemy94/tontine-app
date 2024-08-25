@@ -56,4 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Tontine::class);
     }
 
+    public function tontineuser(){
+        return $this->hasMany(TontineUser::class);
+    }
+
 }

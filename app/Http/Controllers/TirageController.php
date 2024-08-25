@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Tirage;
 use App\Models\Tontine;
-use App\Models\User;
+use Nette\Utils\Random;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\Tirages\TirageRepository;
 use App\Repositories\Tontines\TontineRepository;
-use Illuminate\Support\Facades\Auth;
-use Nette\Utils\Random;
 
 class TirageController extends Controller
 {
@@ -82,7 +83,7 @@ class TirageController extends Controller
 
     public function lancerTirage($tontineId)
     {
-        $user = Auth::user;
+        $user = Auth::user();
         //Récupère le tontine sélectionnée
         // $tontine = $request->select('tontine_id');
 
@@ -106,7 +107,7 @@ class TirageController extends Controller
         } while(in_array($numero, $existNumber));
 
         array_push($orderP, ["t_".$user->id => $numero]);
-        \DB::table('tontines')->update($tontineId, ['order_of_passage' =>json_encode($orderP)]);
+        DB::table('tontines')->update($tontineId, ['order_of_passage' =>json_encode($orderP)]);
 
         //Générer un numéro de tirage pour chaque utilisateur
         $tirages = [];

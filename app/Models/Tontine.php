@@ -29,6 +29,10 @@ class Tontine extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function tontineUser(){
+        return $this->hasMany(TontineUser::class);
+    }
+
 }
 
 

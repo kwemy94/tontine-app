@@ -10,4 +10,11 @@ class TontineUser extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function tontine(){
+        return $this->belongsTo(Tontine::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

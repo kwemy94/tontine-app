@@ -6,7 +6,6 @@
     <style>
         .error {
             border-color: red !important;
-            color: #7b8a9a !important;
         }
 
         .table-tontine {
@@ -32,13 +31,13 @@
     <div class="card table-tontine">
 
         <div class="title-list">
-            <h5 class="card-header">Mes tontines</h5>
+            <h5 class="card-header">Mes cotisations</h5>
         </div>
 
         <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
                 data-bs-target="#basicModal">
-                Adhérer
+                Tontiner
             </button>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -47,20 +46,13 @@
     </div>
     <div class="card-body">
         <div id="loader"></div>
-        <div class="row">
-            <p>
-                <span class="badge rounded-pill bg-success">Cotisation OK</span>
-                <span class="badge rounded-pill bg-danger">Non cotisé</span>
-                <span class="badge rounded-pill bg-primary">Retard de cotisation</span>
-            </p>
-        </div>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Tontine</th>
-                        <th>Nom</th>
-                        <th>Etat cotisation</th>
+                        <th>Montant</th>
+                        <th>Période</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -68,18 +60,12 @@
 
 
 
-                    @forelse ($myTontines as $item)
+                    @forelse ($payments as $payment)
                         <tr>
-                            <td>{{ $item->tontine->name_tontine }}</td>
-                            <td>{{ $item->nombre_de_nom }}</td>
-                            <td>
-                                <p>
-                                    <span class="badge badge-center rounded-pill bg-primary">1</span>
-                                    <span class="badge badge-center rounded-pill bg-danger">2</span>
-                                    <span class="badge badge-center rounded-pill bg-success">3</span>
-                                </p>
-                            </td>
-
+                            <td>{{ $payment->tontine->name_tontine }}</td>
+                            <td>{{ $payment->payment_amount }}</td>
+                            <td>{{ $payment->period }}</td>
+                            
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -87,15 +73,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="cotiser_{{ $item->id }}"
-                                            data-url="{{ route('current-user.tontine', $item->id) }}"
-                                            onclick="editer({{ $item->id }})" title="Cotiser">
-                                            <i class="bx bx-money me-1"></i></a>
-                                        <form class="dropdown-item" action="{{ route('current-user.tontine', $item->id) }}"
+
+                                        <form class="dropdown-item" action="{{ route('payments.destroy', $payment->id) }}"
                                             method="post">
                                             @method('delete')
                                             @csrf
-                                            <button class="bx bx-trash me-1" title="Quitter la tontine"
+                                            <button class="bx bx-trash me-1"
                                                 style="color: red; border: none; background-color:white "></button>
                                         </form>
                                     </div>
@@ -105,7 +88,7 @@
                     @empty
                         <tr>
                             <td colspan="4" style="text-align: center">
-                                Vous n'avez souscrit à aucune tontine
+                                Aucun paiement réalisé
                             </td>
                         </tr>
                     @endforelse
@@ -115,29 +98,5 @@
             </table>
         </div>
     </div>
-    <div class="mt-3">
-        <!-- Modal create -->
-        @include('dashboard.payment.my-tontine.create')
-    </div>
-@endsection
 
-@section('dashboard-js')
-    <script>
-        $('#tontine').change(() => {
-            let tontineId = $('#tontine').val();
-            let currentTontine = $(`#tontine_${tontineId}`).val();
-
-            $(`#tontine_current`).attr('hidden', false);
-            $('#tontine_val').val(currentTontine);
-
-        })
-        $('#saveTontine').click((e) => {
-            e.preventDefault();
-            if (!ControlRequiredFields($('#basicModal .required'))) {
-                return 0;
-            }
-            $('#saveTontine').attr('disabled', true);
-            $('#basicModal').submit();
-        })
-    </script>
 @endsection

@@ -5,7 +5,8 @@
 @section('dashboard-css')
     <style>
         .error {
-            border-color: red !important;
+            border-bottom-color: red !important;
+            color: #7b8a9a !important;
         }
 
         .table-tontine {
@@ -54,6 +55,7 @@
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Ordre de passage</th>
+                        <th>Max nom/membre</th>
                         <th>Montant de la tontine</th>
                         <th>Actions</th>
                     </tr>
@@ -69,6 +71,7 @@
                             <td>{{ $tontine->start_date }}</td>
                             <td>{{ $tontine->end_date }}</td>
                             <td>{{ $tontine->order_of_passage }}</td>
+                            <td>{{ $tontine->max_name_per_member }}</td>
                             <td>{{ $tontine->amount_tontine }}</td>
                             <td>
                                 <div class="dropdown">

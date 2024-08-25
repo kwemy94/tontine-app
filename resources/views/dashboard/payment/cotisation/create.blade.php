@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('become-member.store') }}" class="modal fade" id="basicModal" tabindex="-1"
+<form method="POST" action="{{ route('become-member.store') }}" class="modal fade" id="payTontine" tabindex="-1"
     aria-hidden="true">
     @csrf
     <div class="modal-dialog" role="document">

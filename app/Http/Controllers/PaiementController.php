@@ -28,7 +28,7 @@ class PaiementController extends Controller
         $user = Auth::user();
         $payments = $this->paymentRepository->paymentUser($user->id);
 
-        return view('dashboard.payment.user_payment', compact('payments'));
+        return view('dashboard.payment.cotisation.index', compact('payments'));
     }
 
     /**
