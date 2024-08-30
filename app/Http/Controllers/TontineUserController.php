@@ -67,7 +67,7 @@ class TontineUserController extends Controller
         } catch (Exception $ex) {
             return redirect()->back()->with('danger', $ex->getMessage());
         }
-        return redirect()->back()->with('success', 'Inscription réussi !');
+        return redirect()->back()->with('success', 'Inscription réussie !');
     }
 
     /**

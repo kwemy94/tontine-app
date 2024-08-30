@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('tontine.store') }}" class="modal fade" id="basicModal" tabindex="-1"
+<form method="POST" action="{{ route('tontine.store') }}" class="modal fade" id="formTontine" tabindex="-1"
     aria-hidden="true">
     @csrf
     <div class="modal-dialog" role="document">
@@ -73,3 +73,5 @@
         </div>
     </div>
 </form>
+
+

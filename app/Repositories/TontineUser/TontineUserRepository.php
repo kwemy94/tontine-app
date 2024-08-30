@@ -26,6 +26,6 @@ class TontineUserRepository extends ResourceRepository{
         return $this->model->where([['user_id', $userId], ['tontine_id', $tontineId]])->count();
     }
 
-    
+
 
 }

@@ -36,7 +36,7 @@
 
         <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-                data-bs-target="#basicModal">
+                data-bs-target="#formTontine">
                 Nouveau
             </button>
         </div>
@@ -129,7 +129,7 @@
             let startD = $('#start_date').val();
             let endD = $('#end_date').val();
             let currentD = new Date();
-            if (!ControlRequiredFields($('#basicModal .required'))) {
+            if (!ControlRequiredFields($('#formTontine .required'))) {
                 return 0;
             }
 
@@ -153,8 +153,10 @@
             $('#errorCurDate').css({
                 'display': 'none'
             })
-
-            $('#basicModal').submit();
+            // let a = document.getElementById('saveTontine');
+            // a.setAttribute('disabled',true);
+            $('#saveTontine').attr('disabled',true);
+            $('#formTontine').submit();
         })
 
         function editer(id) {

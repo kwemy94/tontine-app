@@ -25,6 +25,7 @@ class TontineController extends Controller
     {
         $tontines = $this->tontineRepository->getAll();
         $cycles = $this->cycleRepository->getAll();
+     
         return view('dashboard.tontine.index', compact('tontines', 'cycles'));
     }
 
@@ -48,7 +49,8 @@ class TontineController extends Controller
                 'cycle_id' => 'required',
                 'start_date' => 'required',
                 'end_date' => 'required',
-                'amount_tontine' => 'required'
+                'amount_tontine' => 'required',
+                'max_name_per_member' => 'required'
             ]);
             $inputs = $request->all();
             $this->tontineRepository->store($inputs);
@@ -58,7 +60,7 @@ class TontineController extends Controller
             return redirect()->back()->with('danger', 'Erreur de création de la tontine');
         }
 
-        return redirect()->back()->with('success', 'Tontine créer avec succès');
+        return redirect()->back()->with('success', 'Tontine créée avec succès');
     }
 
     /**
