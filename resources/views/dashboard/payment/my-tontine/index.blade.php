@@ -58,7 +58,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Tontine</th>
+                        <th>Tontine </th>
                         <th>Nom</th>
                         <th>Etat cotisation</th>
                         <th>Actions</th>
