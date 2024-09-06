@@ -19,10 +19,10 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="week">Semaine</label>
                         <input type="week" name="periode" class="form-control">
-                    </div>
+                    </div> --}}
                     <div class="mb-3" id="tontine_current" hidden>
                         <label for="tontine_{{ $tontine->id }}"
                             class="form-label ">Montant</label>

@@ -46,7 +46,7 @@ class TontineUserController extends Controller
         $user = Auth::user();
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
-        dd($request->all());
+        
         try {
             $tontine = $this->tontineRepository->getById($request->tontine_id);
             if($tontine){
