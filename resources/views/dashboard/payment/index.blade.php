@@ -70,12 +70,12 @@
                             <td>{{ $paiement->reference }}</td>
                             <td>{{ $paiement->phone_number }}</td>
 
-                            
+
                         </tr>
                     @empty
                         <tr>
                             <td colspan="6" style="text-align: center">
-                                Aucun paiement effectué
+                                Aucun paiement effectué 
                             </td>
                         </tr>
                     @endforelse
