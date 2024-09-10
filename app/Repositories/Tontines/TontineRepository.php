@@ -16,6 +16,11 @@ class TontineRepository extends ResourceRepository{
         $this->model = $tontine;
     }
 
+    public function getById($id)
+    {
+        return $this->model->where('id', $id)->with('cycle')->first();
+    }
+
     public function getAll($status = null){
 
         if ($status) {

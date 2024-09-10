@@ -2,18 +2,45 @@
 
 @section('dashboard-title', 'Listes des utilisateurs')
 
+@section('dashboard-css')
+    <style>
+        .error {
+            border-bottom-color: red !important;
+            color: #7b8a9a !important;
+        }
+
+        .table-user {
+            margin: 0 2% 0 2%;
+            display: inline-block;
+        }
+
+        .button-list {
+            float: right;
+            margin: 2%;
+        }
+
+        .title-list {
+            float: left;
+        }
+    </style>
+@endsection
+
 @section('dashboard-content')
     <hr class="my-5" />
     <!-- Bordered Table -->
-    <div class="card">
+    <div class="card table-user">
 
-        <h5 class="card-header">Liste des utilisateurs</h5>
+        <div class="title-list">
+            <h5 class="card-header">Liste des utilisateurs</h5>
+        </div>
 
-        <div class="col-lg-4 col-md-6">
+        <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-                data-bs-target="#basicModal">
-                Nouveau
+            data-bs-target="#userForm">
+            Nouveau
             </button>
+        </div>
+        <div class="col-lg-4 col-md-6">
 
         </div>
     </div>
@@ -81,7 +108,7 @@
     <div class="mt-3">
         <!-- Modal -->
         <form method="POST" action="{{ route('user.store') }}"
-        class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+        class="modal fade" id="userForm" tabindex="-1" aria-hidden="true">
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

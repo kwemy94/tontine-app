@@ -30,26 +30,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </form>
 
 <script>
     //sCript pour lancer le tirage
     document.getElementById('lancerTire').addEventListener('click', function() {
         fetch('/lancer-tirage', {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify
-                ({
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
                     tontine_id: document.querySelector('select[name="tontine_id"]').value
                 })
-        })
-        .then(response => response.json())
+            })
+            .then(response => response.json())
             .then(data => {
                 //Traiter la réponse du controlleur
-                alert('Votre numéro de tirage est : ' +data.numero_tirage);
+                alert('Votre numéro de tirage est : ' + data.numero_tirage);
             })
             .catch(error => {
                 console.error('Une erreur s\'est produite : ', error);

@@ -25,7 +25,7 @@ class TontineController extends Controller
     {
         $tontines = $this->tontineRepository->getAll();
         $cycles = $this->cycleRepository->getAll();
-     
+
         return view('dashboard.tontine.index', compact('tontines', 'cycles'));
     }
 

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/tontine', TontineController::class);
     Route::resource('/user', UserController::class);
+    Route::post('/my-current-tontine/{id}',[ TontineUserController::class, 'tontiner'] )->name('my-current-tontine.tontiner');
 
     Route::resource('/paiements', PaiementController::class);
     Route::get('/payments-current-user', [PaiementController::class, 'currentUserPayment'])->name('paiement.current-user');

@@ -8,6 +8,7 @@ use App\Repositories\Cycles\CycleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Payments\PaymentRepository;
+use App\Repositories\Tontines\TontineRepository;
 use App\Repositories\TontineUser\TontineUserRepository;
 
 
@@ -16,10 +17,12 @@ class PaiementController extends Controller
     private $paymentRepository;
     private $tontineUserRepository;
     private $cycleRepository;
-    public function __construct(PaymentRepository $paymentRepository,TontineUserRepository $tontineUserRepository,CycleRepository $cycleRepository){
+    private $tontineRepository;
+    public function __construct(PaymentRepository $paymentRepository,TontineUserRepository $tontineUserRepository,CycleRepository $cycleRepository, TontineRepository $tontineRepository){
         $this->paymentRepository = $paymentRepository;
         $this->tontineUserRepository = $tontineUserRepository;
         $this->cycleRepository = $cycleRepository;
+        $this->tontineRepository = $tontineRepository;
     }
 
     /**
@@ -30,15 +33,11 @@ class PaiementController extends Controller
         $user = Auth::user();
         $payments = $this->paymentRepository->getAll();
         $myTontines = $this->tontineUserRepository->myTontines($user->id);
-        $cycle = $this->cycleRepository->getAll();
-        // $tontine = Tontine::find($request->tontine_id);
+        $cycles = $this->cycleRepository->getAll();
+        $openTontines = $this->tontineRepository->getAll(0);
 
-        //     if($tontine->cycle->intitule === 'Mensuel')
-        //     {
 
-        //     }
-
-        return view('dashboard.payment.index', compact('payments','myTontines'));
+        return view('dashboard.payment.index', compact('payments','myTontines','cycles','openTontines'));
     }
 
 
@@ -65,15 +64,28 @@ class PaiementController extends Controller
         // dd($request->all());
 
          $validatedData = $request->validate([
-                'name_tontine' => 'required|unique:tontines',
-                'payment_amount' => 'required',
                 'period' => 'required',
-                'reference' => 'required',
-            ]);
-            $data = $request->all();
-            $this->tontineUserRepository->store($data);
 
-        return redirect()->back()->with('success', 'payement effectué avec succès');
+                'phone_number' => 'required',
+            ]);
+
+            // $this->tontineUserRepository->store($data);
+            $tontine = $this->tontineRepository->getById($request->tontine_id);
+            // dd($tontine);
+            // $tontine->save();
+            // $payements = $request->all();
+            // $this->paymentRepository->store($tontine);
+            $payements = new Payment();
+            $user = Auth::user();
+            $payements->user_id = $user->id;
+            $payements->tontine_id = $tontine->id;
+            $payements->payment_amount = $tontine->amount_tontine;
+            $payements->period = $request->period;
+            $payements->reference = json_encode('ref');
+            $payements->phone_number = $request->phone_number;
+            $payements->save();
+            // return redirect('dashboard/payment/index')->with('success', 'payement effectué avec succès');
+        // return redirect()->back()->with('success', 'payement effectué avec succès');
 
 
     }

@@ -97,8 +97,33 @@ class TontineUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TontineUser $tontineUser)
+    public function destroy($id)
     {
-        //
+    //     $tontine = $this->tontineRepository->getById($id);
+    //     // dd($tontineUser);
+
+    //     if ($tontine) {
+    //         $tontine->delete();
+    //         return redirect()->back()->with('success', 'Tontine supprimée');
+    //     }
+    //     return redirect()->back()->with('success', 'Tontine non existante');
+    }
+
+    public function tontiner($id){
+
+        $tontine = $this->tontineRepository->getById($id) ;
+        if ($tontine) {
+            $view = view('dashboard.payment.my-tontine.tontiner', compact('tontine'))->render();
+            return response()->json([
+                'success' => true,
+                'view' => $view
+            ]);
+
+        }
+
+        return response()->json([
+            'success' => false,
+            'view' =>''
+        ]);
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('payment_amount');
             $table->date('period');
             $table->json('reference');
+            $table->string('phone_number');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('tontine_id')->references('id')->on('tontines')->cascadeOnDelete();
             $table->softDeletes();

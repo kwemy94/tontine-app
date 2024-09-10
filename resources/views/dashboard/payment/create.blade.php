@@ -5,7 +5,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Effectuer un payement</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                </button>
             </div>
             <div class="modal-body">
 
@@ -20,41 +22,17 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="payment_amount" class="form-label">MONTANT</label>
-                        <input type="number" id="payment_amount" class="form-control required" name="payment_amount"/>
-                    </div>
-                </div>
-                <div class="row">
-                    {{-- <div class="col mb-3">
-                        <label for="period" class="form-label">PERIODE</label>
-                        <input type="date" id="period" class="form-control required" name="period"/>
-                    </div> --}}
-                    {{-- @if ($myTontines->cycle->intitule === 'Mensuel') --}}
-                        {{-- <label for="period">CHOISIR UN MOIS</label>
-                        <select name="period" id="period">
-                            @for ($i = 1; $i <= 12; $i++)
-                                <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                            @endfor
-                        </select> --}}
-                        <div class="mb-3 row">
-                            <label for="html5-month-input" class="col-md-2 col-form-label">CHOISIR UN MOIS</label>
-                            <div class="col-md-10">
-                              <input class="form-control" type="month" value="2021-06" id="html5-month-input">
-                            </div>
-                          </div>
+                    <div class="mb-3" id="payment_current" hidden>
+                        <label for="payment_val" class="form-label ">Montant</label>
+                        <input type="text" readonly id="payment_val" value="" class="form-control" />
 
-                    @elseif ($myTontines->cycle->intitule === 'Hebdomadaire')
-                        <label for="period">CHOISIR LE NUMERO DE SEMAINE</label>
-                        <select name="period" id="period">
-                            @for ($i = $myTontines->start_date->weekOfYear; $i <= $myTontines->end_date->weekOfYear; $i++)
-                                <option value="{{ $i }}">{{ $i }} Semaine</option>
-                            @endfor
-                        </select>
-                    @endif
+                    </div>
+                    @foreach ($openTontines as $tontine)
+                        <input type="hidden" readonly id="tontine_{{ $tontine->id }}"
+                            value="{{ $tontine->amount_tontine }}" class="form-control" />
+                    @endforeach
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Fermer
@@ -63,5 +41,6 @@
                 </div>
 
             </div>
+        </div>
+    </div>
 </form>
-

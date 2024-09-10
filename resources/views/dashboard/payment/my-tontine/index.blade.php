@@ -89,7 +89,7 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" id="cotiser_{{ $item->id }}"
                                             data-url="{{ route('current-user.tontine', $item->id) }}"
-                                            onclick="editer({{ $item->id }})" title="Cotiser">
+                                            onclick="cotiser({{ $item->tontine->id }})" title="Cotiser">
                                             <i class="bx bx-money me-1"></i></a>
                                         <form class="dropdown-item" action="{{ route('current-user.tontine', $item->id) }}"
                                             method="post">
@@ -119,6 +119,13 @@
         <!-- Modal create -->
         @include('dashboard.payment.my-tontine.create')
     </div>
+    <div class="mt-3" id="tontiner_modal">
+        {{--  Modal tontiner --}}
+
+    </div>
+
+
+
 @endsection
 
 @section('dashboard-js')
@@ -139,5 +146,31 @@
             $('#saveTontine').attr('disabled', true);
             $('#basicModal').submit();
         })
+        // $('#paymentSubmit').click((e) => {
+        //     e.preventDefault();
+        //     if (!ControlRequiredFields($('#phone_number .required'))) {
+        //         return 0;
+        //     }
+        //     $('#paymentSubmit').attr('disabled', true);
+        //     $('#phone_number').submit();
+        // })
+
+
+        function cotiser(tontineId){
+            console.log(tontineId);
+            let url = '{{route("my-current-tontine.tontiner", "")}}'+'/'+ tontineId;
+
+            $('#tontiner_modal').empty();
+
+            postData(url, {}, 'post').then((res)=>{
+                console.log(res);
+                if(res.success){
+                    $('#tontiner_modal').html(res.view);
+                    $('#paymentForm').modal('show');
+                }
+            })
+
+        }
     </script>
+
 @endsection

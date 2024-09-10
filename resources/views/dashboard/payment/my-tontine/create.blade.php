@@ -20,17 +20,17 @@
                         </select>
                     </div>
                     <div class="mb-3" id="tontine_current" hidden>
-                        <label for="tontine_{{ $tontine->id }}"
+                        <label for="tontine_val"
                             class="form-label ">Montant</label>
                         <input type="text" readonly id="tontine_val" value=""
                             class="form-control" />
-                        
+
                     </div>
                     @foreach ($openTontines as $tontine)
-                        
+
                             <input type="hidden" readonly id="tontine_{{ $tontine->id }}" value="{{ $tontine->amount_tontine }}"
                                 class="form-control" />
-                        
+
                     @endforeach
                 </div>
 
