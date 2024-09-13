@@ -147,12 +147,14 @@
             $('#basicModal').submit();
         })
         // $('#paymentSubmit').click((e) => {
-        //     e.preventDefault();
-        //     if (!ControlRequiredFields($('#phone_number .required'))) {
-        //         return 0;
-        //     }
-        //     $('#paymentSubmit').attr('disabled', true);
-        //     $('#phone_number').submit();
+        //     // e.preventDefault();
+        //     // if (!ControlRequiredFields($('#paymentForm .required'))) {
+        //     //     return 0;
+        //     // }
+        //     // $('#paymentSubmit').attr('disabled', true);
+        //     // $('#paymentForm').submit();
+        //     console.log('ds');
+
         // })
 
 

@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('paiements.store') }}" class="modal fade" id="paymentForm" tabindex="-1"
+<form method="POST" action="{{ route('paiements.store') }}" class="modal fade" id="adhererTontine" tabindex="-1"
     aria-hidden="true">
     @csrf
     <div class="modal-dialog" role="document">
@@ -37,7 +37,7 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Fermer
                     </button>
-                    <button type="submit" id="paymentSubmit" class="btn btn-primary">Effectuer</button>
+                    <button type="submit" id="integrerTontine" class="btn btn-primary">Effectuer</button>
                 </div>
 
             </div>

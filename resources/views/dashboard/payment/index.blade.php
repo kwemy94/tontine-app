@@ -34,12 +34,6 @@
             <h5 class="card-header">Liste des payements</h5>
         </div>
 
-        {{-- <div class="button-list">
-            <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-                data-bs-target="#paymentForm">
-                Effectuer un payement
-            </button>
-        </div> --}}
         <div class="col-lg-4 col-md-6">
 
         </div>
@@ -75,7 +69,7 @@
                     @empty
                         <tr>
                             <td colspan="6" style="text-align: center">
-                                Aucun paiement effectué 
+                                Aucun paiement effectué
                             </td>
                         </tr>
                     @endforelse
@@ -86,12 +80,6 @@
         </div>
     </div>
     </div>
-    <!--/ Bordered Table -->
-
-    {{-- <div class="mt-3">
-        <!-- Modal create -->
-        @include('dashboard.payment.create')
-    </div> --}}
 
     <div class="mt-3" id="body-edit"></div>
 
@@ -99,14 +87,14 @@
 
 @section('dashboard-js')
     <script>
-        $('#paymentSubmit').click((e) => {
+        $('#integrerTontine').click((e) => {
             e.preventDefault();
             console.log('yes');
-            if (!ControlRequiredFields($('#paymentForm .required'))) {
+            if (!ControlRequiredFields($('#adhererTontine .required'))) {
                 return 0;
             }
 
-            $('#paymentForm').submit();
+            $('#adhererTontine').submit();
         })
 
         $('#tontine_id').change(() => {

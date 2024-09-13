@@ -35,7 +35,7 @@
                             <div class="col mb-3">
                                 <label for="html5-month-input" class="form-label">CHOISIR UN MOIS</label>
 
-                                <input class="form-control" type="month" value="{{ now()->format('m-Y') }}"
+                                <input class="form-control audrey" type="month" value="{{ now()->format('m-Y') }}"
                                     id="html5-month-input" name="period">
 
                             </div>
@@ -43,7 +43,7 @@
                             <div class="col mb-3">
                                 <label for="html5-week-input" class="form-label">SEMAINE</label>
 
-                                <input class="form-control" type="week" value="2021-W25" id="html5-week-input"
+                                <input class="form-control audrey" type="week" value="2021-W25" id="html5-week-input"
                                     name="period">
 
                             </div>
@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="mb-3" id="payment_current">
                             <label for="phone_number" class="form-label ">NUMERO DE TELEPHONE</label>
-                            <input type="text" id="phone_number" class="form-control required"
+                            <input type="text" id="phone_number" class="form-control audrey"
                                 placeholder="Entrez votre numéro de téléphone" name="phone_number" />
 
                         </div>
@@ -70,3 +70,16 @@
             </div>
         </div>
 </form>
+
+<script>
+     $('#paymentSubmit').click((e) => {
+            e.preventDefault();
+            if (!ControlRequiredFields($('#paymentForm .audrey'))) {
+                return 0;
+            }
+            $('#paymentSubmit').attr('disabled', true);
+            $('#paymentForm').submit();
+            console.log('ds');
+
+        })
+</script>
