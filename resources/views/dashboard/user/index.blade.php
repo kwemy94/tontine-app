@@ -36,8 +36,8 @@
 
         <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
-            data-bs-target="#userForm">
-            Nouveau
+                data-bs-target="#userForm">
+                Nouveau
             </button>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -107,15 +107,14 @@
 
     <div class="mt-3">
         <!-- Modal -->
-        <form method="POST" action="{{ route('user.store') }}"
-        class="modal fade" id="userForm" tabindex="-1" aria-hidden="true">
+        <form method="POST" action="{{ route('user.store') }}" class="modal fade" id="userForm" tabindex="-1"
+            aria-hidden="true">
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="user">Création d'un utilisateur</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -155,4 +154,27 @@
         </form>
     </div>
 
+@endsection
+
+@section('dashboard-js')
+    <script>
+        $('#integrerTontine').click((e) => {
+            e.preventDefault();
+            console.log('yes');
+            if (!ControlRequiredFields($('#adhererTontine .required'))) {
+                return 0;
+            }
+
+            $('#adhererTontine').submit();
+        })
+
+        $('#tontine_id').change(() => {
+            let tontineId = $('#tontine_id').val();
+            let currentTontine = $(`#tontine_${tontineId}`).val();
+
+            $(`#payment_current`).attr('hidden', false);
+            $('#payment_val').val(currentTontine);
+
+        })
+    </script>
 @endsection

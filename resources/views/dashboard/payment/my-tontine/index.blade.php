@@ -146,16 +146,6 @@
             $('#saveTontine').attr('disabled', true);
             $('#basicModal').submit();
         })
-        // $('#paymentSubmit').click((e) => {
-        //     // e.preventDefault();
-        //     // if (!ControlRequiredFields($('#paymentForm .required'))) {
-        //     //     return 0;
-        //     // }
-        //     // $('#paymentSubmit').attr('disabled', true);
-        //     // $('#paymentForm').submit();
-        //     console.log('ds');
-
-        // })
 
 
         function cotiser(tontineId){
