@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('paiements.store') }}" class="modal fade" id="paymentForm" tabindex="-1"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static">
     @csrf
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -35,11 +35,11 @@
                             <div class="col mb-3">
                                 <label for="html5-month-input" class="form-label">CHOISIR UN MOIS</label>
 
-                                <input class="form-control audrey" type="month" value="{{ now()->format('m-Y') }}"
-                                    id="html5-month-input" name="period">
+                                <input class="form-control audrey" type="month" value="{{ date('F Y') }}"
+                                    id="html5-month-input" name="period" placeholder="">
 
                             </div>
-                        @elseif ($tontine->cycle->intitule == 'Hebdomadaire')
+                        @elseif ($tontine->cycle->intitule == 'Hebdomadaire') 
                             <div class="col mb-3">
                                 <label for="html5-week-input" class="form-label">SEMAINE</label>
 
@@ -82,4 +82,5 @@
             console.log('ds');
 
         })
+        <script src="{{ asset('js/app.js') }}"></script>
 </script>

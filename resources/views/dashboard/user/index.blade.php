@@ -108,7 +108,7 @@
     <div class="mt-3">
         <!-- Modal -->
         <form method="POST" action="{{ route('user.store') }}" class="modal fade" id="userForm" tabindex="-1"
-            aria-hidden="true">
+            aria-hidden="true" data-bs-backdrop="static">
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -177,4 +177,5 @@
 
         })
     </script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection

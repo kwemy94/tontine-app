@@ -65,7 +65,7 @@
                             <td>{{ $payment->tontine->name_tontine }}</td>
                             <td>{{ $payment->payment_amount }}</td>
                             <td>{{ $payment->period }}</td>
-                            
+
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -100,3 +100,4 @@
     </div>
 
 @endsection
+{{-- <script src="{{ asset('js/app.js') }}"></script> --}}

@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('paiements.store') }}" class="modal fade" id="adhererTontine" tabindex="-1"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static">
     @csrf
     <div class="modal-dialog" role="document">
         <div class="modal-content">
