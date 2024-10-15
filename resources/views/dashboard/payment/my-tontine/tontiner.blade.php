@@ -36,10 +36,10 @@
                                 <label for="html5-month-input" class="form-label">CHOISIR UN MOIS</label>
 
                                 <input class="form-control audrey" type="month" value="{{ date('F Y') }}"
-                                    id="html5-month-input" name="period" placeholder="">
+                                    id="html5-month-input" name="period" placeholder="Mois Année">
 
                             </div>
-                        @elseif ($tontine->cycle->intitule == 'Hebdomadaire') 
+                        @elseif ($tontine->cycle->intitule == 'Hebdomadaire')
                             <div class="col mb-3">
                                 <label for="html5-week-input" class="form-label">SEMAINE</label>
 
@@ -72,15 +72,55 @@
 </form>
 
 <script>
-     $('#paymentSubmit').click((e) => {
-            e.preventDefault();
-            if (!ControlRequiredFields($('#paymentForm .audrey'))) {
-                return 0;
-            }
-            $('#paymentSubmit').attr('disabled', true);
-            $('#paymentForm').submit();
-            console.log('ds');
+    window.onload = function() {
+        $('#paymentSubmit').click((e) => {
+                e.preventDefault();
+                if (!ControlRequiredFields($('#paymentForm .audrey'))) {
+                    return 0;
+                }
+                $('#paymentSubmit').attr('disabled', true);
+                $('#paymentForm').submit();
+                console.log('ds');
+            })
 
-        })
-        <script src="{{ asset('js/app.js') }}"></script>
+        const monthInput = document.getElementById('html5-month-input');
+
+        // Fonction pour obtenir le mois en lettres
+        function getMonthInLetters() {
+            const monthsInLetters = [
+                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+            ];
+            return monthsInLetters[new Date().getMonth()];
+        }
+
+        // Fonction pour obtenir l'année en cours
+        function getCurrentYear() {
+            return new Date().getFullYear();
+        }
+
+        
+        // Récupérer l'élément input de type month
+        const monthInput = document.getElementById('html5-month-input');
+        
+        
+        // Pré-remplir le champ "mois" avec le mois en lettres suivi de l'année en cours
+        monthInput.value = `${getMonthInLetters()} / ${getCurrentYear()}`;
+
+
+        // Obtenir la date actuelle
+        const today = new Date();
+
+        // Extraire l'année et le mois actuels
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro devant si nécessaire
+
+        // Formater la valeur comme YYYY-MM
+        const currentMonth = `${year}-${month}`;
+        
+        // Définir la valeur de l'input
+        monthInput.value = currentMonth;
+        console.log('bonjour');
+    }
+    
 </script>
