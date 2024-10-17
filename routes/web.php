@@ -18,9 +18,11 @@ Auth::routes();
 # desabled login page
 // Auth::routes(['login' =>false]);
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[TontineUserController::class, 'showUserTontines'])
+->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.dashboard' );
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,4 +46,5 @@ Route::middleware('auth')->group(function () {
 Auth::routes(['verify' => true]);
 require __DIR__.'/auth.php';
 
+// Route::get('/compterTontine', [TontineUserController::class, 'showUserTontines'])->name('showUserTontines.compter');
 

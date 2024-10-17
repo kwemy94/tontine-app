@@ -35,7 +35,7 @@
                             <div class="col mb-3">
                                 <label for="html5-month-input" class="form-label">CHOISIR UN MOIS</label>
 
-                                <input class="form-control audrey" type="month" value="{{ date('F Y') }}"
+                                <input class="form-control audrey" type="month" value=""
                                     id="html5-month-input" name="period" placeholder="Mois Année">
 
                             </div>
@@ -83,29 +83,31 @@
                 console.log('ds');
             })
 
-        const monthInput = document.getElementById('html5-month-input');
+        // const monthInput = document.getElementById('html5-month-input');
 
-        // Fonction pour obtenir le mois en lettres
-        function getMonthInLetters() {
-            const monthsInLetters = [
-                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-            ];
-            return monthsInLetters[new Date().getMonth()];
-        }
+        // // Fonction pour obtenir le mois en lettres
+        // function getMonthInLetters() {
+        //     const monthsInLetters = [
+        //         "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+        //         "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        //     ];
+        //     return monthsInLetters[new Date().getMonth()];
+        // }
 
         // Fonction pour obtenir l'année en cours
-        function getCurrentYear() {
-            return new Date().getFullYear();
-        }
+        // function getCurrentYear() {
+        //     return new Date().getFullYear();
+        // }
 
         
+        // console.log('Bonsoir');
         // Récupérer l'élément input de type month
+        console.log('bonjour');
         const monthInput = document.getElementById('html5-month-input');
         
         
         // Pré-remplir le champ "mois" avec le mois en lettres suivi de l'année en cours
-        monthInput.value = `${getMonthInLetters()} / ${getCurrentYear()}`;
+        // monthInput.value = `${getMonthInLetters()} / ${getCurrentYear()}`;
 
 
         // Obtenir la date actuelle
@@ -116,11 +118,10 @@
         const month = String(today.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro devant si nécessaire
 
         // Formater la valeur comme YYYY-MM
-        const currentMonth = `${year}-${month}`;
+        const currentMonth = `${month}-${year}`;
         
         // Définir la valeur de l'input
         monthInput.value = currentMonth;
-        console.log('bonjour');
     }
     
 </script>

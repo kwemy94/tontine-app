@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TontineUser;
+use App\Models\User;
 use App\Repositories\Tontines\TontineRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,18 @@ class TontineUserController extends Controller
         $openTontines = $this->tontineRepository->getAll(0);
         $nbreTontine = count($myTontines);
         return view('dashboard.payment.my-tontine.index', compact('myTontines', 'openTontines'));
+    }
+
+    public function showUserTontines()
+    {
+        // Request $request
+        // $user = $request->user(); // Récupérer l'utilisateur authentifié
+        // $tontineCount = $user->tontines()->count(); // Compter les tontines
+        // dd($tontineCount);
+
+        $user = Auth::user();
+        $tontineCount= $this->tontineUserRepository->myTontines($user->id);
+        return view('dashboard.dashboard', compact('tontineCount'));
     }
 
     /**

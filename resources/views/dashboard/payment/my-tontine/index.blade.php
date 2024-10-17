@@ -82,7 +82,7 @@
 
                             <td>
                                 <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
                                         data-bs-toggle="dropdown">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
@@ -165,5 +165,4 @@
         }
 
     </script>
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection
