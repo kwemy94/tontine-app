@@ -53,7 +53,7 @@
                         <th>Tontine</th>
                         <th>Montant</th>
                         <th>Période</th>
-                        <th>Actions</th>
+                        {{-- <th>Actions</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +66,7 @@
                             <td>{{ $payment->payment_amount }}</td>
                             <td>{{ $payment->period }}</td>
                             
-                            <td>
+                            {{-- <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                         data-bs-toggle="dropdown">
@@ -83,7 +83,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @empty
                         <tr>
