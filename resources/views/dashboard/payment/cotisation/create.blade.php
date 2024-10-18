@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('become-member.store') }}" class="modal fade" id="payTontine" tabindex="-1"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static">
     @csrf
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -24,13 +24,13 @@
                             class="form-label ">Montant</label>
                         <input type="text" readonly id="tontine_val" value=""
                             class="form-control" />
-                        
+
                     </div>
                     @foreach ($openTontines as $tontine)
-                        
+
                             <input type="hidden" readonly id="tontine_{{ $tontine->id }}" value="{{ $tontine->amount_tontine }}"
                                 class="form-control" />
-                        
+
                     @endforeach
                 </div>
 

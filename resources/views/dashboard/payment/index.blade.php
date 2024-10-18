@@ -105,33 +105,6 @@
             $('#payment_val').val(currentTontine);
 
         })
-        // function editer(id) {
-        //     let url = $('#edit_' + id).data('url');
-
-        //     let data = {};
-        //     console.log(url, data);
-        //     $('#loader').css('display', 'block');
-        //     $('#loader').html(
-        //         '<div class="text-center"><i style="z-index: 5000; color:green;font-size:30px;">Chargement....</i></div>'
-        //     );
-        //     $.ajax({
-        //         url,
-        //         data,
-        //         success: (data) => {
-        //             console.log(data);
-        //             // $('#edit_method').css('display', 'blog');
-        //             if (data.success) {
-        //                 $('#body-edit').html(data.view)
-        //                 $('#basicModal_edit').modal('show');
-        //                 $('#loader').css('display', 'none');
-        //             } else {
-
-        //             }
-        //         },
-        //         error: (xhr, exception) => {
-        //             $('#loader').css('display', 'none');
-        //         }
-        //     })
-        // }
     </script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection

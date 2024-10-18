@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('become-member.store') }}" class="modal fade" id="basicModal" tabindex="-1"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static">
     @csrf
     <div class="modal-dialog" role="document">
         <div class="modal-content">

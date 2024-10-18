@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('tontine.update', $tontine->id) }}" class="modal fade" id="basicModal_edit"
-    tabindex="-1" aria-hidden="true">
+    tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     @csrf
     @method('PUT')
     <div class="modal-dialog" role="document">
@@ -80,39 +80,42 @@
     </div>
 </form>
 
-<script>
-    $('#saveTontineEdit').click((e) => {
-        e.preventDefault();//empeche l'envoie du formuairepardefaut
-        console.log('set');
-        let startD = $('#start_datee').val();
-        let endD = $('#end_datee').val();
-        let currentD = new Date();
-        // let day = currentD.getDate();
-        if (!ControlRequiredFields($('#basicModal_edit .required'))) {//si tous les champs ne sont pas renseigné faire
-            return 0;
-        }
-        if (new Date(endD) <= new Date(startD)) {
+@section('dashboard-js')
+    <script>
+        $('#saveTontineEdit').click((e) => {
+            e.preventDefault();//empeche l'envoie du formuairepardefaut
+            console.log('set');
+            let startD = $('#start_datee').val();
+            let endD = $('#end_datee').val();
+            let currentD = new Date();
+            // let day = currentD.getDate();
+            if (!ControlRequiredFields($('#basicModal_edit .required'))) {//si tous les champs ne sont pas renseigné faire
+                return 0;
+            }
+            if (new Date(endD) <= new Date(startD)) {
+                $('#errorDatee').css({
+                    'display': 'block'
+                })
+                console.log('ici 111');
+                return 0;
+            }
             $('#errorDatee').css({
-                'display': 'block'
+                'display': 'none'
             })
-            console.log('ici 111');
-            return 0;
-        }
-        $('#errorDatee').css({
-            'display': 'none'
-        })
 
-        if(new Date(endD) <= currentD) {
+            if(new Date(endD) <= currentD) {
+                $('#errorCurrentDate').css({
+                    'display': 'block'
+                })
+                console.log("ici")
+                return 0;
+            }
             $('#errorCurrentDate').css({
-                'display': 'block'
+                'display': 'none'
             })
-            console.log("ici")
-            return 0;
-        }
-        $('#errorCurrentDate').css({
-            'display': 'none'
-        })
 
-        $('#basicModal_edit').submit();
-    })
-</script>
+            $('#basicModal_edit').submit();
+        })
+    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+@endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TontineUser;
+use App\Models\User;
 use App\Repositories\Tontines\TontineRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,20 @@ class TontineUserController extends Controller
         $user = Auth::user();
         $myTontines = $this->tontineUserRepository->myTontines($user->id);
         $openTontines = $this->tontineRepository->getAll(0);
-
+        $nbreTontine = count($myTontines);
         return view('dashboard.payment.my-tontine.index', compact('myTontines', 'openTontines'));
+    }
+
+    public function showUserTontines()
+    {
+        // Request $request
+        // $user = $request->user(); // Récupérer l'utilisateur authentifié
+        // $tontineCount = $user->tontines()->count(); // Compter les tontines
+        // dd($tontineCount);
+
+        $user = Auth::user();
+        $tontineCount= $this->tontineUserRepository->myTontines($user->id);
+        return view('dashboard.dashboard', compact('tontineCount'));
     }
 
     /**
@@ -46,7 +59,7 @@ class TontineUserController extends Controller
         $user = Auth::user();
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
-        
+
         try {
             $tontine = $this->tontineRepository->getById($request->tontine_id);
             if($tontine){
@@ -75,7 +88,10 @@ class TontineUserController extends Controller
      */
     public function show(TontineUser $tontineUser)
     {
-        //
+        // $user = Auth::user();
+        // $myTontines = $this->tontineUserRepository->myTontines($user->id);
+        // $tontineCount = $user->tontineUserRepository->myTontines($user->id)->count();
+        // return view('dashboard.dashboard', compact('nbreTontine '));
     }
 
     /**

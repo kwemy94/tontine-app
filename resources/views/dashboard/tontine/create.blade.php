@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('tontine.store') }}" class="modal fade" id="formTontine" tabindex="-1"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static">
     @csrf
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -53,7 +53,7 @@
                         <input type="number" min="0" id="amount_tontine" name="amount_tontine" class="form-control required" />
                     </div>
                     <div class="col mb-0">
-                        <label for="max_name" class="form-label">Nombre de nom max par membre </label>
+                        <label for="max_name" class="form-label">NOMBRE DE NOM PAR MEMBRE </label>
                         <input type="number" step="1" min="1" value="2" id="max_name" name="max_name_per_member" class="form-control required" />
                     </div>
                 </div>
@@ -73,5 +73,4 @@
         </div>
     </div>
 </form>
-
 
