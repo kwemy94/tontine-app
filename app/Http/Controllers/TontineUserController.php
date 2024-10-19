@@ -33,6 +33,7 @@ class TontineUserController extends Controller
 
     public function showUserTontines()
     {
+        dd(1);
         // Request $request
         // $user = $request->user(); // Récupérer l'utilisateur authentifié
         // $tontineCount = $user->tontines()->count(); // Compter les tontines

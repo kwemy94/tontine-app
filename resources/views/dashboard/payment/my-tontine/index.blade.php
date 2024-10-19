@@ -1,4 +1,4 @@
-@extends('dashboard.dashboard')
+@extends('dashboard.layouts.app-dashboard')
 
 @section('dashboard-title', 'Mes cotisations')
 
