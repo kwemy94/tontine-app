@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/paiements', PaiementController::class);
     Route::get('/payments-current-user', [PaiementController::class, 'currentUserPayment'])->name('paiement.current-user');
-    Route::get('/my-tontine-user', [TontineUserController::class, 'index'])->name('current-user.tontine');
+    Route::delete('/my-tontine-user', [TontineUserController::class, 'destroy'])->name('current-user.tontine');
     Route::resource('/become-member', TontineUserController::class);
 
     Route::resource('/tirage', TirageController::class);

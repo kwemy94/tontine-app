@@ -120,25 +120,25 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="name" class="form-label">NOM </label>
-                                <input type="text" id="name" class="form-control" name="name"
+                                <input type="text" id="name" class="form-control required" name="name"
                                     placeholder="Entrez votre nom" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="email" class="form-label">ADRESSE EMAIL </label>
-                                <input type="text" id="email" class="form-control" name="email"
+                                <input type="text" id="email" class="form-control required" name="email"
                                     placeholder="Entrez votre adresse email" />
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="sexe" class="form-label">SEXE</label>
-                                <input type="text" id="sexe" name="sexe" class="form-control" />
+                                <input type="text" id="sexe" name="sexe" class="form-control required" />
                             </div>
                             <div class="col mb-0">
                                 <label for="residence" class="form-label">RESIDENCE</label>
-                                <input type="text" id="residence" name="residence" class="form-control" />
+                                <input type="text" id="residence" name="residence" class="form-control required" />
                             </div>
                         </div>
 
@@ -147,7 +147,7 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary" id="userSubmit">Enregistrer</button>
                     </div>
                 </div>
             </div>
@@ -158,14 +158,14 @@
 
 @section('dashboard-js')
     <script>
-        $('#integrerTontine').click((e) => {
+        $('#userSubmit').click((e) => {
             e.preventDefault();
             console.log('yes');
-            if (!ControlRequiredFields($('#adhererTontine .required'))) {
+            if (!ControlRequiredFields($('#userForm .required'))) {
                 return 0;
             }
 
-            $('#adhererTontine').submit();
+            $('#userForm').submit();
         })
 
         $('#tontine_id').change(() => {
@@ -177,5 +177,4 @@
 
         })
     </script>
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection

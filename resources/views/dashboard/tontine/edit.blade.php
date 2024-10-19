@@ -56,17 +56,20 @@
                 <div class="row g-2">
                     <div class="col mb-0">
                         <label for="amount_tontine" class="form-label">MONTANT DE LA TONTINE </label>
-                        <input type="number" min="0" id="amount_tontine" value="{{ $tontine->amount_tontine }}" name="amount_tontine" class="form-control required" />
+                        <input type="number" min="0" id="amount_tontine" value="{{ $tontine->amount_tontine }}"
+                            name="amount_tontine" class="form-control required" />
                     </div>
                     <div class="col mb-0">
                         <label for="max_name" class="form-label">Nombre de nom max par membre </label>
-                        <input type="number" step="1" min="1" value="{{ $tontine->max_name_per_member }}" id="max_name" name="max_name_per_member" class="form-control required" />
+                        <input type="number" step="1" min="1" value="{{ $tontine->max_name_per_member }}"
+                            id="max_name" name="max_name_per_member" class="form-control required" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="member_of_beneficiary" class="form-label">NOMBRE DE BENEFICIAIRES </label>
-                        <input type="number" min="1" id="member_of_beneficiary" class="form-control required" name="member_of_beneficiary" />
+                        <input type="number" min="1" id="member_of_beneficiary" class="form-control required"
+                            name="member_of_beneficiary" />
                     </div>
                 </div>
             </div>
@@ -81,27 +84,28 @@
 </form>
 
 @section('dashboard-js')
-    <script>
+<script>
+        alert('bonjour')
+       $(document).ready(() => {
         $('#saveTontineEdit').click((e) => {
-            e.preventDefault();//empeche l'envoie du formuairepardefaut
-            console.log('set');
+            e.preventDefault();
+            console.log('yes');
             let startD = $('#start_datee').val();
             let endD = $('#end_datee').val();
             let currentD = new Date();
-            // let day = currentD.getDate();
-            if (!ControlRequiredFields($('#basicModal_edit .required'))) {//si tous les champs ne sont pas renseigné faire
+            if (!ControlRequiredFields($('#basicModal_edit .required'))) {
                 return 0;
             }
+
             if (new Date(endD) <= new Date(startD)) {
                 $('#errorDatee').css({
                     'display': 'block'
                 })
-                console.log('ici 111');
                 return 0;
             }
-            $('#errorDatee').css({
+            $('#errorDate').css({
                 'display': 'none'
-            })
+            });
 
             if(new Date(endD) <= currentD) {
                 $('#errorCurrentDate').css({
@@ -110,12 +114,14 @@
                 console.log("ici")
                 return 0;
             }
-            $('#errorCurrentDate').css({
+            $('#errorCurDate').css({
                 'display': 'none'
             })
-
+            // let a = document.getElementById('saveTontine');
+            // a.setAttribute('disabled',true);
+            $('#saveTontineEdit').attr('disabled',true);
             $('#basicModal_edit').submit();
         })
+       })
     </script>
-    <script src="{{ asset('js/app.js') }}"></script>
 @endsection
