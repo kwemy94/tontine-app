@@ -33,17 +33,17 @@
 
                         @if ($tontine->cycle->intitule == 'Mensuel')
                             <div class="col mb-3">
-                                <label for="html5-month-input" class="form-label">CHOISIR UN MOIS</label>
+                                <label for="inputMonth" class="form-label">CHOISIR UN MOIS</label>
 
-                                <input class="form-control audrey" type="month" value=""
-                                    id="html5-month-input" name="period" placeholder="Mois Année">
+                                <input class="form-control audrey" type="month" value="" id="inputMonth"
+                                    name="period" placeholder="Mois Année">
 
                             </div>
                         @elseif ($tontine->cycle->intitule == 'Hebdomadaire')
                             <div class="col mb-3">
-                                <label for="html5-week-input" class="form-label">SEMAINE</label>
+                                <label for="inputHebdo" class="form-label">SEMAINE</label>
 
-                                <input class="form-control audrey" type="week" value="2021-W25" id="html5-week-input"
+                                <input class="form-control audrey" type="week" value="2021-W25" id="inputHebdo"
                                     name="period">
 
                             </div>
@@ -74,54 +74,46 @@
 <script>
     window.onload = function() {
         $('#paymentSubmit').click((e) => {
-                e.preventDefault();
-                if (!ControlRequiredFields($('#paymentForm .audrey'))) {
-                    return 0;
-                }
-                $('#paymentSubmit').attr('disabled', true);
-                $('#paymentForm').submit();
-                console.log('ds');
-            })
-
-        // const monthInput = document.getElementById('html5-month-input');
-
-        // // Fonction pour obtenir le mois en lettres
-        // function getMonthInLetters() {
-        //     const monthsInLetters = [
-        //         "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-        //         "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-        //     ];
-        //     return monthsInLetters[new Date().getMonth()];
-        // }
-
-        // Fonction pour obtenir l'année en cours
-        // function getCurrentYear() {
-        //     return new Date().getFullYear();
-        // }
-
-        
-        // console.log('Bonsoir');
-        // Récupérer l'élément input de type month
-        console.log('bonjour');
-        const monthInput = document.getElementById('html5-month-input');
-        
-        
-        // Pré-remplir le champ "mois" avec le mois en lettres suivi de l'année en cours
-        // monthInput.value = `${getMonthInLetters()} / ${getCurrentYear()}`;
+            e.preventDefault();
+            if (!ControlRequiredFields($('#paymentForm .audrey'))) {
+                return 0;
+            }
+            $('#paymentSubmit').attr('disabled', true);
+            $('#paymentForm').submit();
+            console.log('ds');
+        })
 
 
-        // Obtenir la date actuelle
+
+    }
+    $(document).ready(() => {
         const today = new Date();
 
-        // Extraire l'année et le mois actuels
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro devant si nécessaire
+        if ($('#inputMonth').length) {
+            // Extraire l'année et le mois actuels
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro devant si nécessaire
 
-        // Formater la valeur comme YYYY-MM
-        const currentMonth = `${month}-${year}`;
-        
-        // Définir la valeur de l'input
-        monthInput.value = currentMonth;
-    }
-    
+            // Formater la valeur comme YYYY-MM
+            const currentMonth = `${year}-${month}`;
+
+            $('#inputMonth').val(currentMonth);
+        }
+        if ($('#inputHebdo').length) {
+            // Obtenir le numéro de la semaine
+            const getWeekNumber = (date) => {
+                const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+                const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+                return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+            };
+            const weekNumber = getWeekNumber(today);
+            // Extraire l'année
+            const year = today.getFullYear();
+            // Combiner année et numéro de semaine au format requis
+            const currentWeek = `${year}-W${String(weekNumber).padStart(2, '0')}`;
+            // Définir la valeur par défaut du champ de saisie
+            $('#inputHebdo').val(currentWeek);
+        }
+
+    })
 </script>
