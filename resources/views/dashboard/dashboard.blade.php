@@ -5,7 +5,7 @@
 @section('dashboard-content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="mb-4 col-lg-8 order-0">
+            {{-- <div class="mb-4 col-lg-8 order-0">
                 <div class="card">
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="order-1 col-lg-4 col-md-4">
                 <div class="row">
                     <div class="mb-4 col-lg-6 col-md-12 col-6">
@@ -54,10 +54,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="mb-1 fw-semibold d-block">Profit</span>
+                                {{-- <span class="mb-1 fw-semibold d-block">Profit</span> --}}
                                 {{-- <a href="{{ route('showUserTontines.compter') }}">Membre de tontines</a> --}}
-                                <h3 class="mb-2 card-title">Membre de {{ count( $tontineCount ) }} tontines</h3>
-                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                                <h3 class="mb-2 card-title">{{ count( $tontineCount ) }}</h3>
+                                {{-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> --}}
                             </div>
                         </div>
                     </div>
