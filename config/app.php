@@ -53,6 +53,22 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'campay_api' =>[
+        'base_url' => 'https://demo.campay.net/',
+        'auth' => [
+            'username' => 'yue0s-AZjSO-0x0JZcX6EyompXn0XKGFnExceRVDzJY8cxyYuGP3-bDagUGVDkQRyxfF7yfLGVey8LjaODseWQ',
+            'password' => 'GspACnscHMawCSDYzI23ktReyfXlfqk6H5yQyFivuL3C94i1QJBp6rAC5CS3BBmGkscIBCLT_dnfTDFhsLgghw',
+        ],
+        "payment" => [
+            "amount" => "378",
+            "currency" => "XAF",
+            "from" => "237658758598",
+            "description" => "test de versement",
+            "external_reference" => "{{external_reference}}",
+            "external_user" => ""
+        ],
+
+    ],
 
     /*
     |--------------------------------------------------------------------------

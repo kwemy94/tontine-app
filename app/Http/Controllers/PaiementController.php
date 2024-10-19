@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Payment;
 use App\Models\Tontine;
-use App\Repositories\Cycles\CycleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Cycles\CycleRepository;
 use App\Repositories\Payments\PaymentRepository;
 use App\Repositories\Tontines\TontineRepository;
 use App\Repositories\TontineUser\TontineUserRepository;
@@ -47,6 +48,19 @@ class PaiementController extends Controller
         $user = Auth::user();
         $payments = $this->paymentRepository->paymentUser($user->id);
 
+        foreach($payments as $pay){
+            if(strtolower($pay->status) == 'pending'){
+                $ref = json_decode($pay->reference, true)['reference'];
+                $resp = $this->paymentRepository->paymentStatusApi($ref);
+                if ($resp['status'] == 200) {
+                    $datas['status'] = $resp['datas']['status'];
+                    $datas['reference'] = json_encode($resp['datas']);
+                    $this->paymentRepository->update($pay->id, $datas);
+                }
+            }
+        }
+        $payments = $this->paymentRepository->paymentUser($user->id);
+
         return view('dashboard.payment.cotisation.index', compact('payments'));
     }
 
@@ -64,29 +78,45 @@ class PaiementController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-
+        
         $validatedData = $request->validate([
             'period' => 'required',
 
             'phone_number' => 'required',
         ]);
 
-        // $this->tontineUserRepository->store($data);
-        $tontine = $this->tontineRepository->getById($request->tontine_id);
-        // dd($tontine);
-        // $tontine->save();
-        // $payements = $request->all();
-        // $this->paymentRepository->store($tontine);
-        $payements = new Payment();
-        $user = Auth::user();
-        $payements->user_id = $user->id;
-        $payements->tontine_id = $tontine->id;
-        $payements->payment_amount = $tontine->amount_tontine;
-        $payements->period = $request->period;
-        $payements->reference = json_encode('ref');
-        $payements->phone_number = $request->phone_number;
-        $payements->save();
-        return redirect()->route('paiement.current-user')->with('success', 'payement effectué avec succès');
+        $inputs['phone_number'] = $request->phone_number;
+        $inputs['period'] = $request->period;
+        try {
+            $tontine = $this->tontineRepository->getById($request->tontine_id);
+
+            $inputs['name_tontine'] = $tontine->name_tontine;
+            $inputs['amount_tontine'] = $tontine->amount_tontine;
+            // dd($inputs);
+            $paymentApi = $this->paymentRepository->paymentApi($inputs);
+            
+            $user = Auth::user();
+            $paymentInputs['user_id'] = $user->id;
+            $paymentInputs['tontine_id'] = $tontine->id;
+            $paymentInputs['payment_amount'] = $tontine->amount_tontine;
+            $paymentInputs['period'] = $request->period;
+            $paymentInputs['phone_number'] = $request->phone_number;
+
+            if($paymentApi['status'] == 200){
+                $paymentInputs['reference'] = json_encode($paymentApi['datas']);
+                $paymentInputs['status'] = "Pending";
+                
+                $this->paymentRepository->store($paymentInputs);
+            } else {
+                // dd($paymentApi);
+                throw new Exception('Erreur : ' .$paymentApi);
+            }
+        } catch (\Throwable $th) {
+            # ecrire dans le fichier le log l'erreur
+            dd($th);
+            return redirect()->back()->with('danger', 'Oups!! Une erreur survenue !');
+        }
+        return redirect()->route('paiement.current-user')->with('success', 'Bien vouloir confirmer le paiement sur votre mobile !');
 
 
     }

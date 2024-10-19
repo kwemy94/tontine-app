@@ -54,7 +54,7 @@
                         <div class="mb-3" id="payment_current">
                             <label for="phone_number" class="form-label ">NUMERO DE TELEPHONE</label>
                             <input type="text" id="phone_number" class="form-control audrey"
-                                placeholder="Entrez votre numéro de téléphone" name="phone_number" />
+                                placeholder="6xxxxxxxx" name="phone_number" />
 
                         </div>
                     </div>

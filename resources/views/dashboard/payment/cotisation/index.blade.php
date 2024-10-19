@@ -31,7 +31,7 @@
     <div class="card table-tontine">
 
         <div class="title-list">
-            <h5 class="card-header">Mes cotisations</h5>
+            <h5 class="card-header">Mes versements de cotisation</h5>
         </div>
 
         <div class="button-list">
@@ -51,9 +51,10 @@
                 <thead>
                     <tr>
                         <th>Tontine</th>
-                        <th>Montant</th>
+                        <th>Montant Versé</th>
                         <th>Période</th>
-                        {{-- <th>Actions</th> --}}
+                        <th>Date de versement</th>
+                        <th>Statut</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,21 @@
                             <td>{{ $payment->tontine->name_tontine }}</td>
                             <td>{{ $payment->payment_amount }}</td>
                             <td>{{ $payment->period }}</td>
+                            <td>{{ $payment->created_at }}</td>
+                            <td style="color: black;">
+                                @if (strtolower($payment->status) == 'pending')
+                                    <span class="bg-warning">{{ $payment->status }}</span>
+                                @endif
+                                @if ($payment->status == 'SUCCESSFUL')
+                                    <span class="bg-success">{{ $payment->status }}</span>
+                                @endif
+                                @if ($payment->status == 'FAILED')
+                                    <span class="bg-danger">{{ $payment->status }}</span>
+                                @endif
+                                @if ($payment->status == null)
+                                    <span class="">-</span>
+                                @endif
+                            </td>
 
                             {{-- <td>
                                 <div class="dropdown">
