@@ -11,15 +11,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Tirages\TirageRepository;
 use App\Repositories\Tontines\TontineRepository;
+use App\Repositories\TontineUser\TontineUserRepository;
 
 class TirageController extends Controller
 {
     private $tirageRepository;
     private $tontineRepository;
-    public function __construct(TirageRepository $tirageRepository, TontineRepository $tontineRepository)
+    private $tontineUserRepository;
+    public function __construct(TirageRepository $tirageRepository, TontineRepository $tontineRepository,
+        TontineUserRepository $tontineUserRepository)
     {
         $this->tirageRepository = $tirageRepository;
         $this->tontineRepository = $tontineRepository;
+        $this->tontineUserRepository = $tontineUserRepository;
     }
 
     /**
@@ -89,9 +93,13 @@ class TirageController extends Controller
 
         //Compter le nombre d'utilisateurs de la table tontine-user
         $nombreUtilisateur = User::where('tontine_id',$tontineId )->count();
+        $nbUserTontine = $this->tontineUserRepository->allTontineMember($tontineId);
 
         //requete qui recupère la tontine dans la table tontine qui a comme id, tontineId
-        $tontine = Tontine::where('id', $tontineId);
+        $tontine = $this->tontineRepository->getById($tontineId);
+
+        # Compter le nombre de nom du user
+        $nbrNomUserTontines = $this->tontineUserRepository->nbreNomuserInTontine($tontineId);
 
         //
         $orderP = json_decode($tontine->order_of_passage);

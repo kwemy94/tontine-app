@@ -27,10 +27,6 @@
                                 class="form-control" name="amount_tontine " />
 
                         </div>
-                    </div>
-
-                    <div class="row">
-
                         @if ($tontine->cycle->intitule == 'Mensuel')
                             <div class="col mb-3">
                                 <label for="inputMonth" class="form-label">CHOISIR UN MOIS</label>
@@ -48,13 +44,10 @@
 
                             </div>
                         @endif
-
-                    </div>
-                    <div class="row">
                         <div class="mb-3" id="payment_current">
                             <label for="phone_number" class="form-label ">NUMERO DE TELEPHONE</label>
-                            <input type="text" id="phone_number" class="form-control audrey"
-                                placeholder="6xxxxxxxx" name="phone_number" />
+                            <input type="text" id="phone_number" class="form-control audrey" placeholder="6xxxxxxxx"
+                                name="phone_number" />
 
                         </div>
                     </div>

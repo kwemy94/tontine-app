@@ -3,6 +3,7 @@
 namespace App\Repositories\TontineUser;
 
 use App\Models\TontineUser;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\ResourceRepository;
 
 
@@ -26,6 +27,17 @@ class TontineUserRepository extends ResourceRepository{
         return $this->model->where([['user_id', $userId], ['tontine_id', $tontineId]])->count();
     }
 
+    public function allTontineMember($tontineId){
+        return  $this->model
+            ->where('tontine_id', $tontineId)
+            ->count();
+    }
+    public function nbreNomuserInTontine($tontineId){
+        $user = Auth::user();
+        return  $this->model
+            ->where([['tontine_id', $tontineId], ['user_id', $user]])
+            ->count();
+    }
 
 
 }
