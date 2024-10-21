@@ -119,7 +119,8 @@ class TontineController extends Controller
      */
     public function destroy($id)
     {
-        $tontine = $this->tontineRepository->getById($id);
+        // $tontine = $this->tontineRepository->getById($id);
+        $tontine = Tontine::findOrFail($id);
         // dd($tontine);
 
         if ($tontine) {

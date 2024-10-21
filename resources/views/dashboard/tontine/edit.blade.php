@@ -83,9 +83,9 @@
     </div>
 </form>
 
-@section('dashboard-js')
+
 <script>
-        alert('bonjour')
+        // alert('bonjour')
        $(document).ready(() => {
         $('#saveTontineEdit').click((e) => {
             e.preventDefault();
@@ -123,5 +123,5 @@
             $('#basicModal_edit').submit();
         })
        })
-    </script>
-@endsection
+</script>
+
