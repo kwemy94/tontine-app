@@ -34,13 +34,13 @@
             <h5 class="card-header">Mes versements de cotisation</h5>
         </div>
 
-        <div class="button-list">
+        {{-- <div class="button-list">
             <button type="button" style="color: black" class="btn btn-outline-success btn-sm pull-right" data-bs-toggle="modal"
                 data-bs-target="#basicModal">
                 Tontiner
             </button>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6"> --}}
 
         </div>
     </div>
@@ -81,7 +81,7 @@
                                     <span class="">-</span>
                                 @endif
                             </td>
-                            
+
                             {{-- <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -116,4 +116,4 @@
     </div>
 
 @endsection
-{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+

@@ -65,7 +65,9 @@
 </form>
 
 <script>
-    window.onload = function() {
+    $(document).ready(() => {
+
+        console.log('ds');
         $('#paymentSubmit').click((e) => {
             e.preventDefault();
             if (!ControlRequiredFields($('#paymentForm .audrey'))) {
@@ -73,13 +75,8 @@
             }
             $('#paymentSubmit').attr('disabled', true);
             $('#paymentForm').submit();
-            console.log('ds');
         })
 
-
-
-    }
-    $(document).ready(() => {
         const today = new Date();
 
         if ($('#inputMonth').length) {
@@ -92,6 +89,7 @@
 
             $('#inputMonth').val(currentMonth);
         }
+        
         if ($('#inputHebdo').length) {
             // Obtenir le numéro de la semaine
             const getWeekNumber = (date) => {

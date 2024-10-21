@@ -116,14 +116,15 @@ class TontineUserController extends Controller
      */
     public function destroy($id)
     {
-    //     $tontine = $this->tontineRepository->getById($id);
-    //     // dd($tontineUser);
+        $tontine = $this->tontineRepository->getById($id);
 
-    //     if ($tontine) {
-    //         $tontine->delete();
-    //         return redirect()->back()->with('success', 'Tontine supprimée');
-    //     }
-    //     return redirect()->back()->with('success', 'Tontine non existante');
+        // dd($tontine);
+
+        if ($tontine) {
+            $tontine->delete();
+            return redirect()->back()->with('success', 'Tontine supprimée');
+        }
+        return redirect()->back()->with('success', 'Tontine non existante');
     }
 
     public function tontiner($id){
