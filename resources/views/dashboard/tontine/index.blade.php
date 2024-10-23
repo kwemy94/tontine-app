@@ -129,6 +129,7 @@
             let startD = $('#start_date').val();
             let endD = $('#end_date').val();
             let currentD = new Date();
+            let amountTontine = $('#amount_tontine').val();
             if (!ControlRequiredFields($('#formTontine .required'))) {
                 return 0;
             }
@@ -153,8 +154,17 @@
             $('#errorCurDate').css({
                 'display': 'none'
             })
-            // let a = document.getElementById('saveTontine');
-            // a.setAttribute('disabled',true);
+
+            if (amountTontine <= 0 || amountTontine > 10) {
+                $('#errorAmountTontine').css({
+                    'display': 'block'
+                })
+                return 0;
+            }
+            $('#errorAmountTontine').css({
+                'display': 'none'
+            });
+
             $('#saveTontine').attr('disabled',true);
             $('#formTontine').submit();
         })

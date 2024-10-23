@@ -70,7 +70,7 @@
 
                     @forelse ($myTontines as $item)
                         <tr>
-                            <td>{{ $item->tontine->name_tontine }}</td>
+                            {{-- <td>{{ $item->tontine->name_tontine }}</td> --}}
                             <td>{{ $item->nombre_de_nom }}</td>
                             <td>
                                 <p>
@@ -87,17 +87,17 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        {{-- <a class="dropdown-item" id="cotiser_{{ $item->id }}"
-                                            data-url="{{ route('current-user.tontine', $item->id) }}"
+                                        <a class="dropdown-item" id="cotiser_{{ $item->id }}"
+                                            data-url="{{ route('my-current-tontine.tontiner', $item->id) }}"
                                             onclick="cotiser({{ $item->tontine->id }})" title="Cotiser">
                                             <i class="bx bx-money me-1"></i></a>
-                                        <form class="dropdown-item" action="{{ route('current-user.tontine', $item->id) }}"
+                                        <form class="dropdown-item" action="{{ route('my-tontine.delete', $item->id) }}"
                                             method="post">
                                             @method('delete')
                                             @csrf
                                             <button class="bx bx-trash me-1" title="Quitter la tontine"
                                                 style="color: red; border: none; background-color:white "></button>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </div>
                             </td>

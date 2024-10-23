@@ -58,8 +58,8 @@
 
                     @forelse ($payments as $paiement)
                         <tr>
-                            <td>{{ $paiement->tontine->name_tontine }}</td>
-                            <td>{{ $paiement->tontine->amount_tontine }}</td>
+                            {{-- <td>{{ $paiement->tontine->name_tontine }}</td>
+                            <td>{{ $paiement->tontine->amount_tontine }}</td> --}}
                             <td>{{ $paiement->period }}</td>
                             <td>{{ $paiement->reference }}</td>
                             <td>{{ $paiement->phone_number }}</td>
