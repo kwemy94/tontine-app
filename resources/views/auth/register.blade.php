@@ -65,7 +65,7 @@
 @endsection
 
 @section('auth-content')
-    <div class="card">
+    <div class="card transparency-register">
         <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">

@@ -64,6 +64,24 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('template/assets/js/config.js') }}"></script>
+    <style>
+      body{
+            background-image: url('{{ asset("images/background/bg7.jpg") }}');
+            /* background: rgb(10,73,95); */
+            background-repeat: no-repeat;
+            background-size: cover; /* remplir la page avec l'image*/
+            background-position: center;
+        }
+        .transparency-login, .transparency-register{
+            background-color: rgba(255, 255, 255, 0.6); /* 0.5 représente 50% de transparence */
+        }
+        .form-label, .app-brand-text, .form-check-label,.text-center, .text-reset{
+            color: black !important;
+        }
+        .app-brand-logo{
+          border-radius: 8px;
+        }
+    </style>
   </head>
 
   <body>

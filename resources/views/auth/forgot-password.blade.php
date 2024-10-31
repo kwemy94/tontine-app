@@ -36,7 +36,7 @@
 @endsection
 
 @section('auth-content')
-    <div class="card">
+    <div class="card transparency-login">
         <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">
@@ -47,7 +47,7 @@
                     <span class="app-brand-text demo text-body fw-bolder">Mot de passe oublié ?</span>
                 </a><br>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-reset">
                 <p>Pas de problème. Indiquez-nous votre adresse électronique et nous vous enverrons un lien de réinitialisation du mot de passe qui vous permettra d'en choisir un nouveau.</p>
             </div>
             <!-- /Logo -->
@@ -77,7 +77,7 @@
                 
                 <button class="btn btn-primary d-grid w-100">Réinitialiser</button>
             </form>
-            <div class="text-center">
+            <div class="text-center" style="font-weight: bold;">
                 <a href="{{ route('home') }}" class="d-flex align-items-center justify-content-center">
                     <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                     Retour

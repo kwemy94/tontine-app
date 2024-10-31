@@ -49,7 +49,7 @@
 
     @if (isset($login) && $login)
         
-        <div class="card">
+        <div class="card transparency-login">
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">

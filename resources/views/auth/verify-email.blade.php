@@ -43,7 +43,7 @@
 @endsection
 
 @section('auth-content')
-    <div class="card">
+    <div class="card transparency-login">
         <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">
@@ -55,8 +55,8 @@
                 </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Activer votre compte</h4>
-            <p class="mb-4">
+            <h4 class="mb-2 text-center">Activer votre compte</h4>
+            <p class="mb-4 text-reset">
                 Merci de vous être inscrit ! Avant de commencer, pourriez-vous
                 vérifier votre adresse électronique en cliquant sur le lien que nous
                 venons de vous envoyer par courrier électronique ? Si vous n'avez pas
