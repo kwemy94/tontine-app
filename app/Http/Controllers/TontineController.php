@@ -56,7 +56,7 @@ class TontineController extends Controller
             $this->tontineRepository->store($inputs);
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th);
+            // dd($th);
             return redirect()->back()->with('danger', 'Erreur de création de la tontine');
         }
 

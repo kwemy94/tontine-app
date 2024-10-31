@@ -38,7 +38,7 @@
                 </div>
                 <div class="row " id="errorDate" style="display: none">
                     <p style="color: red">
-                        La date de fin doit être supérieure à la date de début
+                        La date de fin doit être supérieure à la date de début.
                     </p>
                 </div>
                 <div class="row " id="errorCurDate" style="display: none">
@@ -56,6 +56,11 @@
                         <label for="max_name" class="form-label">NOMBRE DE NOM PAR MEMBRE </label>
                         <input type="number" step="1" min="1" value="2" id="max_name" name="max_name_per_member" class="form-control required" />
                     </div>
+                </div>
+                <div class="row " id="errorAmountTontine" style="display: none">
+                    <p style="color: red">
+                        Le montant doit être compris entre 1 et 10 FCFA.
+                    </p>
                 </div>
                 <div class="row">
                     <div class="col mb-3">
