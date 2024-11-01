@@ -38,8 +38,35 @@
 
     <!-- Page CSS -->
     <style>
+        body{
+            background-image: url('{{ asset("images/background/bg7.jpg") }}');
+            
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
         .notification{
             margin: 2% 2%;
+        }
+        .layout-container #layout-menu {
+            /* background: rgb(5,67,90); */
+            background-color: rgba(255, 255, 255, 0.6) !important;
+        }
+        .bg-navbar-theme {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        .table-tirage, .table-tontine, .table-user {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+        }
+        .menu-link {
+            color:black !important;
+        }
+        .app-brand-link .app-brand-text {
+            /* color: rgb(88,153,223); */
+            color: black;
+        }
+        .app-brand-logo{
+            border-radius: 15px;
         }
     </style>
     @yield('dashboard-css')

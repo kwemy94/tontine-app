@@ -15,15 +15,11 @@ return new class extends Migration
         if(Schema::hasTable('tontines')){
             Schema::table('tontines', function (Blueprint $table) {
                 if(Schema::hasColumn('tontines', 'cycle_id')){
-                    $table->dropForeign('cycle_id');
+                    $table->dropForeign(['cycle_id']);
+                    $table->foreign('cycle_id')->references('id')->on('cycles')->onDelete('cascade');
                 }
             });
         }
-
-        // Ajouter à nouveau la clé étrangère avec cascadeOnDelete
-        Schema::table('tontines', function (Blueprint $table) {
-            $table->foreign('cycle_id')->references('id')->on('cycles')->onDelete('cascade');
-        });
 
     }
 
@@ -34,7 +30,8 @@ return new class extends Migration
     {
         // Supprimer la clé étrangère user_id avec cascadeOnDelete si nécessaire
         Schema::table('tontines', function (Blueprint $table) {
-            $table->dropForeign('cycle_id');
+            $table->dropForeign(['cycle_id']);
+            $table->foreign('cycle_id')->references('id')->on('cycles');
         });
 
     }

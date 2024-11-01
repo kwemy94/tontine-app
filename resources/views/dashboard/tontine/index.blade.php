@@ -26,7 +26,7 @@
 @endsection
 
 @section('dashboard-content')
-    <hr class="my-3" />
+    <hr class="my-1" />
     <!-- Bordered Table -->
     <div class="card table-tontine">
 
@@ -47,7 +47,7 @@
     <div class="card-body">
         <div id="loader"></div>
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Nom de la tontine</th>

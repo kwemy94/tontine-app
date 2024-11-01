@@ -26,7 +26,7 @@
 @endsection
 
 @section('dashboard-content')
-    <hr class="my-3" />
+    <hr class="my-1" />
     <!-- Bordered Table -->
     <div class="card table-tontine">
 
@@ -41,12 +41,13 @@
     <div class="card-body">
         <div id="loader"></div>
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Mes tontines</th>
                         <th>Montant</th>
                         <th>Période</th>
+                        <th>Statut</th>
                         <th>Reférence</th>
                         <th>Numéro de téléphone</th>
 
@@ -57,11 +58,23 @@
 
 
                     @forelse ($payments as $paiement)
+                        @php
+                            $ref = json_decode($paiement->reference, true);
+                        @endphp
                         <tr>
-                            {{-- <td>{{ $paiement->tontine->name_tontine }}</td>
-                            <td>{{ $paiement->tontine->amount_tontine }}</td> --}}
+                            <td>{{ $paiement->tontine->name_tontine }}</td>
+                            <td>{{ $paiement->tontine->amount_tontine }}</td>
                             <td>{{ $paiement->period }}</td>
-                            <td>{{ $paiement->reference }}</td>
+                            <td>
+                                @isset($ref['status'])
+                                    @php
+                                        $status = ($ref['status'] == "FAILED")? 'danger' : (($ref['status'] == "SUCCESSFUL")? 'success':'warning')
+                                    @endphp
+                                    
+                                    <span class="badge bg-label-{{ $status }} me-1">{{ isset($ref['status']) ? $ref['status'] : '-' }}</span>
+                                @endisset
+                            </td>
+                            <td>{{ isset($ref['reference']) ? $ref['reference'] : '-' }}</td>
                             <td>{{ $paiement->phone_number }}</td>
 
 

@@ -15,30 +15,15 @@ return new class extends Migration
         if(Schema::hasTable('tirages')){
             Schema::table('tirages', function (Blueprint $table) {
                 if(Schema::hasColumn('tirages', 'user_id')){
-                    $table->dropForeign('user_id');
+                    $table->dropForeign(['user_id']);
+                    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
                 }
-            });
-        }
-
-        // Ajouter à nouveau la clé étrangère avec cascadeOnDelete
-        Schema::table('tirages', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
-
-
-        // Supprimer la clé étrangère tontine_id si elle existe dans la table tontine_users.
-        if(Schema::hasTable('tirages')){
-            Schema::table('tirages', function (Blueprint $table) {
                 if(Schema::hasColumn('tirages', 'tontine_id')){
-                    $table->dropForeign('tontine_id');
+                    $table->dropForeign(['tontine_id']);
+                    $table->foreign('tontine_id')->references('id')->on('tontines')->onDelete('cascade');
                 }
             });
         }
-
-        // Ajouter à nouveau la clé étrangère avec cascadeOnDelete
-        Schema::table('tirages', function (Blueprint $table) {
-            $table->foreign('tontine_id')->references('id')->on('tontines')->onDelete('cascade');
-        });
 
     }
 
@@ -49,11 +34,14 @@ return new class extends Migration
     {
         // Supprimer la clé étrangère user_id avec cascadeOnDelete si nécessaire
         Schema::table('tirages', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-        });
-        // Supprimer la clé étrangère avec cascadeOnDelete si nécessaire
-        Schema::table('tirages', function (Blueprint $table) {
-            $table->dropForeign('tontine_id');
+            if(Schema::hasColumn('tirages', 'user_id')){
+                $table->dropForeign(['user_id']);
+                $table->foreign('user_id')->references('id')->on('users');
+            }
+            if(Schema::hasColumn('tirages', 'tontine_id')){
+                $table->dropForeign(['tontine_id']);
+                $table->foreign('tontine_id')->references('id')->on('tontines');
+            }
         });
     }
 };

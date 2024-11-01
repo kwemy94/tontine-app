@@ -26,7 +26,7 @@
 @endsection
 
 @section('dashboard-content')
-    <hr class="my-5" />
+    <hr class="my-1" />
     <!-- Bordered Table -->
     <div class="card table-user">
 
@@ -46,7 +46,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Noms</th>
