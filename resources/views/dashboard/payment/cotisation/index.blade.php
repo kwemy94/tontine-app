@@ -25,7 +25,7 @@
 @endsection
 
 @section('dashboard-content')
-    <hr class="my-3" />
+    <hr class="my-1" />
     {{-- @dd($payments) --}}
     <!-- Bordered Table -->
     <div class="card table-tontine">
@@ -47,7 +47,7 @@
     <div class="card-body">
         <div id="loader"></div>
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Tontine</th>
@@ -69,13 +69,13 @@
                             <td>{{ $payment->created_at }}</td>
                             <td style="color: black;">
                                 @if (strtolower($payment->status) == 'pending')
-                                    <span class="bg-warning">{{ $payment->status }}</span>
+                                    <span class="badge bg-label-warning me-1">{{ $payment->status }}</span>
                                 @endif
                                 @if ($payment->status == 'SUCCESSFUL')
-                                    <span class="bg-success">{{ $payment->status }}</span>
+                                    <span class="badge bg-label-success me-1">{{ $payment->status }}</span>
                                 @endif
                                 @if ($payment->status == 'FAILED')
-                                    <span class="bg-danger">{{ $payment->status }}</span>
+                                    <span class="badge bg-label-danger me-1">{{ $payment->status }}</span>
                                 @endif
                                 @if ($payment->status == null)
                                     <span class="">-</span>

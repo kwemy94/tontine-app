@@ -73,13 +73,18 @@
             background-position: center;
         }
         .transparency-login, .transparency-register{
-            background-color: rgba(255, 255, 255, 0.6); /* 0.5 représente 50% de transparence */
+            background-color: rgba(255, 255, 255, 0.4); /* 0.5 représente 50% de transparence */
         }
         .form-label, .app-brand-text, .form-check-label,.text-center, .text-reset{
             color: black !important;
+            font-weight: bold;
         }
         .app-brand-logo{
           border-radius: 8px;
+        }
+        a span,small{
+          color: blue;
+          font-weight: bold
         }
     </style>
   </head>

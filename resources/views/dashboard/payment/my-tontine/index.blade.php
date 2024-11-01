@@ -55,7 +55,7 @@
             </p>
         </div>
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Tontine </th>
@@ -65,12 +65,9 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
-
                     @forelse ($myTontines as $item)
                         <tr>
-                            {{-- <td>{{ $item->tontine->name_tontine }}</td> --}}
+                            <td>{{ $item->tontine->name_tontine }}</td>
                             <td>{{ $item->nombre_de_nom }}</td>
                             <td>
                                 <p>
