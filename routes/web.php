@@ -9,6 +9,7 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\TirageController;
 use App\Http\Controllers\TontineUserController;
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -35,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/payments-current-user', [PaiementController::class, 'currentUserPayment'])->name('paiement.current-user');
 
     Route::resource('/tontine', TontineController::class);
-    Route::delete('/delete-tontine/{id}', [TontineController::class, 'destroy'])->name('tontine.destroy');
+    // Route::delete('/delete-tontine/{id}', [TontineController::class, 'destroy'])->name('tontine.destroy');
 
     Route::resource('/tirage', TirageController::class);
     Route::post('/lancer-tirage', [TirageController::class, 'lancerTirage'])->name('lancer-tirage');

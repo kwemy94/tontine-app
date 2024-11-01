@@ -63,7 +63,7 @@
 
                     @forelse ($payments as $payment)
                         <tr>
-                            <td>{{ $payment->tontine->name_tontine }}</td>
+                            <td>{{ isset($payment->tontine->name_tontine)? $payment->tontine->name_tontine :'' }}</td>
                             <td>{{ $payment->payment_amount }}</td>
                             <td>{{ $payment->period }}</td>
                             <td>{{ $payment->created_at }}</td>
