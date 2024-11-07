@@ -67,7 +67,11 @@
                 <tbody>
                     @forelse ($myTontines as $item)
                         <tr>
+<<<<<<< HEAD
+                            <td>{{ isset($item->tontine->name_tontine)? $item->tontine->name_tontine:''}}</td>
+=======
                             <td>{{ $item->tontine->name_tontine }}</td>
+>>>>>>> 6354b2ac46c1b3823b2ec57e43e72d4a32c07363
                             <td>{{ $item->nombre_de_nom }}</td>
                             <td>
                                 <p>
@@ -86,7 +90,7 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" id="cotiser_{{ $item->id }}"
                                             data-url="{{ route('my-current-tontine.tontiner', $item->id) }}"
-                                            onclick="cotiser({{ $item->tontine->id }})" title="Cotiser">
+                                            onclick="cotiser({{ isset($item->tontine->id)? $item->tontine->id:'' }})" title="Cotiser">
                                             <i class="bx bx-money me-1"></i></a>
                                         <form class="dropdown-item" action="{{ route('my-tontine.delete', $item->id) }}"
                                             method="post">

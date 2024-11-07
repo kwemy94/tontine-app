@@ -26,18 +26,12 @@ class TontineUserController extends Controller
     {
         $user = Auth::user();
         $myTontines = $this->tontineUserRepository->myTontines($user->id);
-        $openTontines = $this->tontineRepository->getAll(0);
+        $openTontines = $this->tontineRepository->getAll();
         return view('dashboard.payment.my-tontine.index', compact('myTontines', 'openTontines'));
     }
 
     public function showUserTontines()
     {
-        // dd(1);
-        // Request $request
-        // $user = $request->user(); // Récupérer l'utilisateur authentifié
-        // $tontineCount = $user->tontines()->count(); // Compter les tontines
-        // dd($tontineCount);
-
         $user = Auth::user();
         $tontineCount= $this->tontineUserRepository->myTontines($user->id);
         return view('dashboard.dashboard', compact('tontineCount'));
