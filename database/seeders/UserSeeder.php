@@ -19,21 +19,21 @@ class UserSeeder extends Seeder
             array(
                 'name' => 'Test User',
                 'email' => 'test@example.com',
-                'password' => Hash::make(12345678),
+                'password' => '$2y$12$UHjJ2LRlS7WP2LWXohzQyOGjtkiOt4JgXPwefNIdFcvQIOOIHVcl2',
                 'phone' => "12456"
             ),
             array(
                 'name' => 'Shell',
                 'email' => 'grantshell0@gmail.com',
-                'password' => Hash::make('123shell'),
+                'password' => '$2y$12$UHjJ2LRlS7WP2LWXohzQyOGjtkiOt4JgXPwefNIdFcvQIOOIHVcl2',
                 'phone' => "672517118"
             ),
             array(
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
+                'name' => 'super-admin',
+                'email' => 'gtiwa@utecq.dev',
                 'email_verified_at' => now(),
-                'password' => Hash::make("admin-shell"),
-                'phone' => "123456"
+                'password' => '$2y$12$Db/mbVUJO5ztblcK.fX39.Iki0snwHkotjRD26LTFQ/eAbJrY40LO',
+                'phone' => "12236"
             )
         );
 
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             $existUser = DB::table('users')->where('phone', $user['phone'])->orWhere('phone', $user['phone'])->first();
 
             if (!$existUser) {
-                
+
                 DB::table('users')->insert($user);
             }
 
