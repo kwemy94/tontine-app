@@ -1,3 +1,6 @@
+@php
+    $user = Auth::user();
+@endphp
 <aside id="layout-menu" class="layout-menu menu-vertical menu">
     <div class="app-brand demo">
         <a href="#" class="app-brand-link">
@@ -31,20 +34,27 @@
             </a>
 
             <ul class="menu-sub">
+                @if ($user->hasRole('super-admin'))
+                    <li class="menu-item">
+                        <a href="{{ route('tontine.index') }}" class="menu-link">
+                            <div data-i18n="Tontines">Tontines</div>
+                        </a>
+                    </li>
+                @endif
+                @if ($user->hasRole('super-admin'))
+                    <li class="menu-item">
+                        <a href="{{ route('user.index') }}" class="menu-link">
+                            <div data-i18n="user">Utilisateurs</div>
+                        </a>
+                    </li>
+                @endif
                 <li class="menu-item">
-                    <a href="{{ route('tontine.index') }}" class="menu-link">
-                        <div data-i18n="Tontines">Tontines</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('user.index') }}" class="menu-link">
-                        <div data-i18n="user">Utilisateurs</div>
-                    </a>
-                </li>
-                <li class="menu-item">
+                    @can('Peut faire un tirage')
                     <a href="{{ route('tirage.index') }}" class="menu-link">
                         <div data-i18n="user">Tirages</div>
                     </a>
+                        
+                    @endcan
                 </li>
 
 
