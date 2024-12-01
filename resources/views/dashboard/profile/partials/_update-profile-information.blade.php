@@ -1,25 +1,27 @@
-<form method="POST" action="{{ route('tontine.store') }}">
+<form method="POST" action="{{ route('profile.update') }}">
     @csrf
-    <div class="" role="document">
+    @method('patch')
+    <div class="">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Création d'une tontine</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col mb-3 form-floating">
-                        <input type="text" id="name_tontine" class="form-control required" name="name_tontine"
-                        placeholder="Entrez le nom de la tontine" />
-                        <label for="name_tontine">NOM DE LA TONTINE </label>
+                    <div class="col mb-3">
+                        <label for="name" class="form-label"> Nom d'utilisateur</label>
+                        <input type="text" id="name" value="{{ $user->name }}" class="form-control profil"
+                            name="name" />
+                    </div>
+                    <div class="mb-3" id="payment_current">
+                        <label for="email" class="form-label ">Email</label>
+                        <input type="email" id="email" value="{{ $user->email }}" class="form-control profil"
+                            name="email" />
                     </div>
                 </div>
-                
-                
             </div>
             <div class="modal-footer">
-                
-                <button type="submit" id="saveTontine" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-outline-success mb-4" id="saveAvatar">
+                    <i class="bx bx-reset d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Enregistrer</span>
+                </button>
             </div>
         </div>
     </div>

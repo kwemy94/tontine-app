@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Tontine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Repositories\Cycles\CycleRepository;
 use App\Repositories\Payments\PaymentRepository;
 use App\Repositories\Tontines\TontineRepository;
@@ -56,6 +57,8 @@ class PaiementController extends Controller
                     $datas['status'] = $resp['datas']['status'];
                     $datas['reference'] = json_encode($resp['datas']);
                     $this->paymentRepository->update($pay->id, $datas);
+                }else{
+                        dd($resp);
                 }
             }
         }
@@ -79,12 +82,22 @@ class PaiementController extends Controller
     {
         // dd($request->all());
         
-        $validatedData = $request->validate([
+        $validatedData = Validator::make($request->all(),[
             'period' => 'required',
-
             'phone_number' => 'required',
+        ],
+        [
+           'period.required' => "Période réquise",
+           'phone_number.required' => "Numéro de téléphone requis",
         ]);
 
+        if ($validatedData->fails()) {
+            # Récupérer tous les messages d'erreur et les concaténer
+            $errorMessages = implode(' | ', $validatedData->errors()->all());
+            # Retourner ou traiter les messages
+            return back()->with('danger', $errorMessages)->withInput();
+        }
+        
         $inputs['phone_number'] = $request->phone_number;
         $inputs['period'] = $request->period;
         try {
@@ -113,7 +126,7 @@ class PaiementController extends Controller
             }
         } catch (\Throwable $th) {
             # ecrire dans le fichier le log l'erreur
-            dd($th);
+            // dd($th);
             return redirect()->back()->with('danger', 'Oups!! Une erreur survenue !');
         }
         return redirect()->route('paiement.current-user')->with('success', 'Bien vouloir confirmer le paiement sur votre mobile !');

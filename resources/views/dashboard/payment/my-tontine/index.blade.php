@@ -67,11 +67,7 @@
                 <tbody>
                     @forelse ($myTontines as $item)
                         <tr>
-<<<<<<< HEAD
                             <td>{{ isset($item->tontine->name_tontine)? $item->tontine->name_tontine:''}}</td>
-=======
-                            <td>{{ $item->tontine->name_tontine }}</td>
->>>>>>> 6354b2ac46c1b3823b2ec57e43e72d4a32c07363
                             <td>{{ $item->nombre_de_nom }}</td>
                             <td>
                                 <p>
