@@ -109,15 +109,24 @@ class TontineUserController extends Controller
      */
     public function destroy($id)
     {
-        $tontine = $this->tontineRepository->getById($id);
+       try {
+        $tontineUser = $this->tontineUserRepository->getById($id);
 
-        // dd($tontine);
+        // dd($tontineUser, $id);
 
-        if ($tontine) {
-            $tontine->delete();
-            return redirect()->back()->with('success', 'Tontine supprimée');
+        if ($tontineUser) {
+            $tontineUser->delete();
         }
-        return redirect()->back()->with('success', 'Tontine non existante');
+        else{
+            throw new Exception("Adhésion non existante");
+        }
+
+        } catch (Exception $th) {
+            $err = "Erreur survenue : ".$th->getMessage();
+            return redirect()->back()->with('error', $err);
+        }
+
+        return redirect()->back()->with('success', 'Adhésion supprimée');
     }
 
     public function tontiner($id){
